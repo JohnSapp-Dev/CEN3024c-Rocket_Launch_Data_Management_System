@@ -1,7 +1,11 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
 public class RocketCollections {
+    static ArrayList<RocketCollections> launchList = new ArrayList<>();
     int Launch_ID;
     String Launch_Provider;
     String Launch_Location;
@@ -10,6 +14,7 @@ public class RocketCollections {
     int Number_of_Crew;
     String Payload;
     int Tonnage_to_Orbit;
+
 
     // Object constructor
     public RocketCollections(int Launch_ID,String Launch_Provider,String Launch_Location,
@@ -51,8 +56,77 @@ public class RocketCollections {
             System.out.println("Please enter only numbers");
             createData();
         }
+        if (optionNumber == 1){
+            System.out.println("upload file");
+        }
+        else if (optionNumber == 2){
+            System.out.println("Enter Data manually");
+            manualDataEntry();
+        }
     }
 
+    public static void manualDataEntry(){
+        int launchID = 0;
+        int numberCrew = 0;
+        int numbertonnage = 0;
+        Date date = null;
+        Scanner dataInput = new Scanner(System.in);
+        System.out.println("Follow the prompts to enter launch data manually");
+
+        System.out.println("Enter Launch ID");
+        try {
+            String l_ID = dataInput.next();
+            launchID = Integer.parseInt(l_ID);
+        }catch (NumberFormatException e){
+            System.out.println("Please enter only numbers i.e. 0001");
+            manualDataEntry();
+        }
+        System.out.println("Enter Launch Provider");
+        String l_Provider = dataInput.next();
+
+        System.out.println("Enter Launch Location");
+        String l_Location = dataInput.next();
+
+        System.out.println("Enter Launch Vehicle");
+        String l_Vehicle = dataInput.next();
+
+        System.out.println("Enter Launch Date YYYY-MM-DD");
+        String l_Date = dataInput.next();
+        // formats l_Date string to a Date type
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            date = formatDate.parse(l_Date);
+        } catch (ParseException e) {
+            System.out.println("Error with date, make sure the date it formated 'yyyy-MM-dd'");
+            manualDataEntry();
+        }
+
+        System.out.println("Enter Number of Crew");
+        try {
+            String numCrew = dataInput.next();
+            numberCrew = Integer.parseInt(numCrew);
+        }catch (NumberFormatException e){
+            System.out.println("Please enter only numbers");
+            manualDataEntry();
+        }
+        System.out.println("Enter Payload");
+        String payload = dataInput.next();
+
+        System.out.println("Enter Tonnage to Orbit");
+        try {
+            String tonnage = dataInput.next();
+            numbertonnage = Integer.parseInt(tonnage);
+        }catch (NumberFormatException e){
+            System.out.println("Please enter only numbers");
+            manualDataEntry();
+        }
+
+        RocketCollections launchData = new RocketCollections
+                (launchID,l_Provider,l_Location,l_Vehicle,date,numberCrew,payload,numbertonnage);
+
+        launchList.add(launchData);
+
+    }
 }
 
 
