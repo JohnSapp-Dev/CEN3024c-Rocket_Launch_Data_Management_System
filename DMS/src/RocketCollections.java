@@ -69,18 +69,24 @@ public class RocketCollections {
         int launchID = 0;
         int numberCrew = 0;
         int numbertonnage = 0;
+        boolean correctEntry = true;
         Date date = null;
         Scanner dataInput = new Scanner(System.in);
         System.out.println("Follow the prompts to enter launch data manually");
 
         System.out.println("Enter Launch ID");
-        try {
-            String l_ID = dataInput.next();
-            launchID = Integer.parseInt(l_ID);
-        }catch (NumberFormatException e){
-            System.out.println("Please enter only numbers i.e. 0001");
-            manualDataEntry();
+        // Allows the user to reenter data if incorrect
+        while (correctEntry) {
+            try {
+                correctEntry = false;
+                String l_ID = dataInput.next();
+                launchID = Integer.parseInt(l_ID);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter only numbers i.e. 0001");
+                correctEntry = true;
+            }
         }
+        correctEntry = true;
         System.out.println("Enter Launch Provider");
         String l_Provider = dataInput.next();
 
@@ -91,40 +97,57 @@ public class RocketCollections {
         String l_Vehicle = dataInput.next();
 
         System.out.println("Enter Launch Date YYYY-MM-DD");
-        String l_Date = dataInput.next();
-        // formats l_Date string to a Date type
-        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            date = formatDate.parse(l_Date);
-        } catch (ParseException e) {
-            System.out.println("Error with date, make sure the date it formated 'yyyy-MM-dd'");
-            manualDataEntry();
+
+        // Allows the user to reenter data if incorrect
+        while(correctEntry) {
+            try {
+                correctEntry = false;
+                String l_Date = dataInput.next();
+                // formats l_Date string to a Date type
+                SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+                date = formatDate.parse(l_Date);
+            } catch (ParseException e) {
+                System.out.println("Error with date, make sure the date it formated 'yyyy-MM-dd'");
+                correctEntry = true;
+            }
         }
+        correctEntry = true;
 
         System.out.println("Enter Number of Crew");
-        try {
-            String numCrew = dataInput.next();
-            numberCrew = Integer.parseInt(numCrew);
-        }catch (NumberFormatException e){
-            System.out.println("Please enter only numbers");
-            manualDataEntry();
+        // Allows the user to reenter data if incorrect
+        while (correctEntry) {
+            try {
+                correctEntry = false;
+                String numCrew = dataInput.next();
+                numberCrew = Integer.parseInt(numCrew);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter only numbers");
+                correctEntry = true;
+            }
         }
+        correctEntry = true;
         System.out.println("Enter Payload");
         String payload = dataInput.next();
 
         System.out.println("Enter Tonnage to Orbit");
-        try {
-            String tonnage = dataInput.next();
-            numbertonnage = Integer.parseInt(tonnage);
-        }catch (NumberFormatException e){
-            System.out.println("Please enter only numbers");
-            manualDataEntry();
+        // Allows the user to reenter data if incorrect
+        while (correctEntry) {
+            try {
+                correctEntry = false;
+                String tonnage = dataInput.next();
+                numbertonnage = Integer.parseInt(tonnage);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter only numbers");
+                correctEntry = true;
+            }
         }
 
         RocketCollections launchData = new RocketCollections
                 (launchID,l_Provider,l_Location,l_Vehicle,date,numberCrew,payload,numbertonnage);
 
         launchList.add(launchData);
+
+
 
     }
 }
