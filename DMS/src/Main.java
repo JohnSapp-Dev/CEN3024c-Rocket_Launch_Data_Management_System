@@ -58,7 +58,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Option 3");
-                    //menu();
+                    RocketCollections.updateData();
                     break;
                 case 4:
                     System.out.println("Option 4");
