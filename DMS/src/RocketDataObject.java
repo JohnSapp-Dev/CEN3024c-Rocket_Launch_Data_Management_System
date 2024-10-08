@@ -11,12 +11,12 @@ public class RocketDataObject {
     private LocalDate Launch_date;
     private int Number_of_Crew;
     private String Payload;
-    private int Tonnage_to_Orbit;
+    private double Tonnage_to_Orbit;
 
     // Constructor
     public RocketDataObject(int Launch_ID,String Launch_Provider,String Launch_Location,
                              String Launch_Vehicle, LocalDate Launch_date, int Number_of_Crew, String Payload,
-                             int Tonnage_to_Orbit){
+                             double Tonnage_to_Orbit){
         this.Launch_ID = Launch_ID;
         this.Launch_Provider = Launch_Provider;
         this.Launch_Location = Launch_Location;
@@ -72,10 +72,10 @@ public class RocketDataObject {
     public void setPayload(String Payload){
         this.Payload = Payload;
     }
-    public int getTonnage_to_Orbit(){
+    public double getTonnage_to_Orbit(){
         return Tonnage_to_Orbit;
     }
-    public void setTonnage_to_Orbit(int Tonnage_to_Orbit){
+    public void setTonnage_to_Orbit(double Tonnage_to_Orbit){
         this.Tonnage_to_Orbit = Tonnage_to_Orbit;
     }
 }

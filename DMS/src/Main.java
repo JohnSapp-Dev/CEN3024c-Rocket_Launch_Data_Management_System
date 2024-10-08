@@ -27,7 +27,8 @@ public class Main {
             System.out.println("\t2 - Read Data");
             System.out.println("\t3 - Update Data");
             System.out.println("\t4 - Delete Data");
-            System.out.println("\t5 - Exit");
+            System.out.println("\t5 - Tonnage to Orbit");
+            System.out.println("\t6 - Exit");
 
             while (correctEntry) {
                 try {
@@ -37,7 +38,7 @@ public class Main {
                     // parses string to int
                     optionNumber = Integer.parseInt(option);
                     // throws invalid message
-                    if (optionNumber < 0 || optionNumber > 5) {
+                    if (optionNumber < 0 || optionNumber > 6) {
                         System.out.println("Invalid option");
                         correctEntry = true;
                     }
@@ -49,22 +50,21 @@ public class Main {
 
             switch (optionNumber) {
                 case 1:
-                    //System.out.println("Option 1");
-                    RocketCollections.createData();
+                   RocketCollections.createData();
                     break;
                 case 2:
-                    System.out.println("Option 2");
-                    RocketCollections.readData();
+                   RocketCollections.readData();
                     break;
                 case 3:
-                    System.out.println("Option 3");
-                    RocketCollections.updateData();
+                    RocketCollections.updateDeleteData(1);
                     break;
                 case 4:
-                    System.out.println("Option 4");
-                    // menu();
+                    RocketCollections.updateDeleteData(2);
                     break;
                 case 5:
+                    RocketCollections.tonnageToOrbit();
+                    break;
+                case 6:
                     System.out.println("Thank you for using the program");
                     exit = false;
                     break;
