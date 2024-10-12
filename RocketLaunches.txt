@@ -18,4 +18,3 @@
 18,SpaceX,Launch Complex 39A,Falcon 9,2020-03-07,0,Cargo Dragon,4.6
 19,SpaceX,Launch Complex 39A,Falcon 9,2024-09-28,2,Crew Dragon,13.6
 20,SpaceX,Launch Complex 39A,Falcon 9,2022-04-18,4,Crew Dragon,13.8
-19,SpaceX,Launch Complex 39A,Falcon 9,2022-04-18,4,Crew Dragon,13.8

@@ -47,7 +47,7 @@ public class Main {
                     correctEntry = true;
                 }
             }
-
+            // calls selected method.
             switch (optionNumber) {
                 case 1:
                    RocketCollections.createData();
@@ -66,7 +66,7 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("Thank you for using the program");
-                    exit = false;
+                    exit = false; //exits the menu loop
                     break;
             }
         }

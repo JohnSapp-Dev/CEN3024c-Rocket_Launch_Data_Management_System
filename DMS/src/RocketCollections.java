@@ -11,6 +11,7 @@ public class RocketCollections {
     static Scanner dataInput = new Scanner(System.in);
 
     public static int launchIDInput(){
+        // gets and returns user input
         boolean correctEntry = true;
         int launchID = 0;
         System.out.println("\nEnter Launch ID");
@@ -20,10 +21,12 @@ public class RocketCollections {
                 correctEntry = false;
                 String l_ID = dataInput.nextLine();
                 launchID = Integer.parseInt(l_ID);
+                //checks for only positive number input
                 if (launchID < 0 ){
                     System.out.println("Please only enter positive numbers");
                     correctEntry = true;
                 }else {
+                    // checks if the number entered already exists in arraylist
                     for (RocketDataObject rL : RocketDataObject.launchList) {
                         if (launchID == rL.getLaunch_ID()) {
                             System.out.println("Launch ID already exists");
@@ -32,6 +35,7 @@ public class RocketCollections {
                     }
                 }
 
+                // invalid text entry
             } catch (NumberFormatException e) {
                 System.out.println("Please enter only a number");
                 correctEntry = true;
@@ -41,31 +45,38 @@ public class RocketCollections {
     }
 
     public static String launchProviderInput(){
+        // gets and returns user input
         System.out.println("Enter Launch Provider");
         return dataInput.nextLine();
     }
 
     public static String launchLocationInput(){
+        // gets and returns user input
         System.out.println("Enter Launch Location");
         return dataInput.nextLine();
     }
 
     public static String launchVehicleInput(){
+        // gets and returns user input
         System.out.println("Enter Launch Vehicle");
         return dataInput.nextLine();
     }
 
     public static LocalDate launchDateInput(){
+        // gets and returns user input
         boolean correctEntry = true;
         LocalDate inputDateType = null;
         System.out.println("Enter Launch Date YYYY-MM-DD");
         // Allows the user to reenter data if incorrect
         while(correctEntry) {
+            // date format
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             try {
                 correctEntry = false;
                 String l_Date = dataInput.nextLine();
                 inputDateType = LocalDate.parse(l_Date,dateFormat);
+
+              // catches date format errors
             } catch (DateTimeParseException e) {
                 System.out.println("Error with date, make sure the date it formated 'YYYY-MM-DD'");
                 correctEntry = true;
@@ -75,6 +86,7 @@ public class RocketCollections {
     }
 
     public static int numberCrewInput(){
+        // gets and returns user input
         boolean correctEntry = true;
         int numberCrew = 0;
         System.out.println("Enter Number of Crew");
@@ -84,10 +96,12 @@ public class RocketCollections {
                 correctEntry = false;
                 String numCrew = dataInput.nextLine();
                 numberCrew = Integer.parseInt(numCrew);
+                // checks for positive number input
                 if (numberCrew < 0 ){
                     System.out.println("Please only enter positive numbers");
                     correctEntry = true;
                 }
+              //checks if the input is an integer
             } catch (NumberFormatException e) {
                 System.out.println("Please enter only numbers");
                 correctEntry = true;
@@ -97,6 +111,7 @@ public class RocketCollections {
     }
 
     public static double tonnageOrbitInput(){
+        // gets and returns user input
         boolean correctEntry = true;
         double numberTonnage = 0;
         System.out.println("Enter Tonnage to Orbit");
@@ -106,10 +121,12 @@ public class RocketCollections {
                 correctEntry = false;
                 String tonnage = dataInput.nextLine();
                 numberTonnage = Double.parseDouble(tonnage);
+                // only allows positive numbers
                 if (numberTonnage < 0 ){
                     System.out.println("Please only enter positive numbers");
                     correctEntry = true;
                 }
+              //checks if the input is an integer
             } catch (NumberFormatException e) {
                 System.out.println("Please enter only numbers");
                 correctEntry = true;
@@ -119,11 +136,13 @@ public class RocketCollections {
     }
 
     public static String payloadInput(){
+        // gets and returns user input
         System.out.println("Enter Payload");
         return dataInput.nextLine();
     }
 
     public static void readDataObject(RocketDataObject rL){
+        //prints out object filed to screen
         System.out.println("Launch ID:        "+rL.getLaunch_ID());
         System.out.println("Launch Provider:  "+rL.getLaunch_Provider());
         System.out.println("Launch Location:  "+rL.getLaunch_Location());
@@ -138,7 +157,7 @@ public class RocketCollections {
         int optionNumber=0;
         boolean correctEntry = true;
         Scanner menuInput = new Scanner(System.in);
-
+        // user selection menu
         System.out.println("Select how you are going to Input Rocket Launch data");
         System.out.println("\t1 - Upload File");
         System.out.println("\t2 - Enter Data manually");
@@ -171,19 +190,22 @@ public class RocketCollections {
     }
 
     public static void manualDataEntry(){
-
+        // creates an object using the "Input" methods
         RocketDataObject launchData = new RocketDataObject
                 (launchIDInput(),launchProviderInput(),launchLocationInput(),launchVehicleInput(),
                         launchDateInput(),numberCrewInput(),payloadInput(),tonnageOrbitInput());
-
+        // adds the object to an arraylist
         RocketDataObject.launchList.add(launchData);
+        //prints the object
         readDataObject(launchData);
     }
 
     public static void readData(){
+        // checks if there is data in the arraylist
         if (RocketDataObject.launchList.isEmpty()){
             System.out.println("No Data");
         }else {
+            // displays the data in the arraylist
             for (RocketDataObject rL : RocketDataObject.launchList) {
                 readDataObject(rL);
             }
@@ -196,17 +218,19 @@ public class RocketCollections {
             //checks if there is data in the arraylist
             System.out.println("No Data");
         }else{
-            //gets user launch_ID selection
+            //gets user launch_ID from user
             Scanner dataInput = new Scanner(System.in);
                 System.out.println("Select a row, enter the Launch ID");
             String l_ID = dataInput.nextLine();
             int number_ID = Integer.parseInt(l_ID);
 
             for (int i = 0 ; i < RocketDataObject.launchList.size(); i++){
+                //loops thought the arraylist
                 boolean editing = true;
                 boolean correctEntry = true;
                 int userInput = 0;
                 if (number_ID == RocketDataObject.launchList.get(i).getLaunch_ID()){
+                    //if the launch ID is found in the arraylist the user can update the info
                     switch(optionNumber){
                         case 1: // edit row
                             while(editing){
@@ -227,6 +251,7 @@ public class RocketCollections {
                                 // gets user selection number
                                 while(correctEntry){
                                     try {
+                                        //error handling for user input
                                         correctEntry = false;
                                         String input = dataInput.nextLine();
                                         userInput = Integer.parseInt(input);
@@ -283,8 +308,10 @@ public class RocketCollections {
                             break;
                         case 2: // delete row
                             if(RocketDataObject.launchList.isEmpty()){
+                                //checks if there is data in the arraylist
                                 System.out.println("No Data to delete");
                             } else {
+                                //deletes the entry corresponding to the launch ID
                                 System.out.println("The data below has been deleted");
                                 readDataObject(RocketDataObject.launchList.get(i));
                                 RocketDataObject.launchList.remove(RocketDataObject.launchList.get(i));
@@ -292,6 +319,9 @@ public class RocketCollections {
                             break;
                     }
                 }
+
+                /*If the loop reaches the end of the arraylist without finding the launch ID
+                * an error message is displayed*/
                 else if(i == RocketDataObject.launchList.size()-1){
                     System.out.println("This Launch ID does not exist\n");
                 }
@@ -300,6 +330,7 @@ public class RocketCollections {
     }
 
     public static void tonnageToOrbit(){
+        // calculates the total tonnage to orbit based on the data in the arraylist
         double totalTonnage = 0;
         DecimalFormat round = new DecimalFormat("0.00");
         if (RocketDataObject.launchList.isEmpty()){
@@ -347,6 +378,7 @@ public class RocketCollections {
             count++;
 
             try {
+                // sets the values from the array to a variable
                 l_ID = Integer.parseInt(splitData[0]);
                 l_Provider = splitData[1];
                 l_Location = splitData[2];
@@ -355,11 +387,14 @@ public class RocketCollections {
                 crew = Integer.parseInt(splitData[5]);
                 payload = splitData[6];
                 tonnage = Double.parseDouble(splitData[7]);
+                // creates a new object with the values above
                 launchData = new RocketDataObject
                         (l_ID,l_Provider,l_Location,l_Vehicle,l_Date,crew,payload,tonnage);
+                // adds the object to the arraylist
                 RocketDataObject.launchList.add(launchData);
+                // reads the object to the screen
                 readDataObject(launchData);
-
+             // error input handling
             }catch (NumberFormatException e){
                 System.out.println("Invalid integer input on line: " + count + " Row not added\n");
             }catch (DateTimeParseException e){
@@ -377,10 +412,8 @@ public class RocketCollections {
                     }
                 }
             }
-           /*readDataObject(launchData);*/
         }
     }
-
 
 }
 
