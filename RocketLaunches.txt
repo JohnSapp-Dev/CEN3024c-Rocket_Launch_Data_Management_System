@@ -1,0 +1,21 @@
+1,NASA,Launch Complex 5,Mercury-Redstone,1961-05-05,1,Mercury Capsule,1.5
+2,NASA,Launch Complex 14,Mercury-Redstone,1962-02-20,1,Mercury Capsule,1.5
+3,NASA,Launch Complex 19,Titan 2,1965-03-23,2,Gemini Capsule,3.5
+4,NASA,Launch Complex 19,Titan 2,1966-03-16,2,Gemini Capsule,4.2
+5,NASA,Launch Complex 19,Titan 2,1966-11-11,2,Gemini Capsule,4.1
+6,NASA,Launch Complex 39A,Saturn V,1968-12-21,3,Apollo Command Module/lunar Module,31.8
+7,NASA,Launch Complex 39A,Saturn V,1969-07-16,3,Apollo Command Module/lunar Module,54.8
+8,NASA,Launch Complex 39A,Saturn V,1970-04-11,3,Apollo Command Module/lunar Module,48.5
+9,NASA,Launch Complex 39A,Saturn V,1972-12-07,3,Apollo Command Module/lunar Module,53.5
+10,NASA,Launch Complex 39B,Saturn 1B,1973-11-16,3,Skylab 4,22.9
+11,NASA,Launch Complex 39A,Space Shuttle Columbia,1981-04-12,2,Development Flight Instrumentation,5.4
+12,NASA,Launch Complex 39A,Space Shuttle Columbia,1982-11-11,4,Communication satellites,16.1
+13,NASA,Launch Complex 39B,Space Shuttle Discovery,1990-04-24,5,Hubble Telescope,13.1
+14,ULA,Space Launch Complex 17,Delta 2,2007-08-04,0,Phoenix Mars Lander,0.7
+15,ULA,Vandenberg SLC-3E,Atlas V,2008-03-13,0,NROL-28,6.5
+16,ULA,Space Launch Complex 41,Atlas V,2020-07-30,0, Perseverance Mars Rover,1.1
+17,SpaceX,Launch Complex 39A,Falcon 9,2020-05-30,2,Crew Dragon,13.8
+18,SpaceX,Launch Complex 39A,Falcon 9,2020-03-07,0,Cargo Dragon,4.6
+19,SpaceX,Launch Complex 39A,Falcon 9,2024-09-28,2,Crew Dragon,13.6
+20,SpaceX,Launch Complex 39A,Falcon 9,2022-04-18,4,Crew Dragon,13.8
+19,SpaceX,Launch Complex 39A,Falcon 9,2022-04-18,4,Crew Dragon,13.8

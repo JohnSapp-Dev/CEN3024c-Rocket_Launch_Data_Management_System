@@ -1,8 +1,11 @@
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.io.*;
+
+import static java.lang.Math.round;
 
 public class RocketCollections {
     static Scanner dataInput = new Scanner(System.in);
@@ -17,12 +20,18 @@ public class RocketCollections {
                 correctEntry = false;
                 String l_ID = dataInput.nextLine();
                 launchID = Integer.parseInt(l_ID);
-                for (RocketDataObject rL : RocketDataObject.launchList) {
-                    if (launchID == rL.getLaunch_ID()){
-                        System.out.println("Launch ID already exists");
-                        correctEntry = true;
+                if (launchID < 0 ){
+                    System.out.println("Please only enter positive numbers");
+                    correctEntry = true;
+                }else {
+                    for (RocketDataObject rL : RocketDataObject.launchList) {
+                        if (launchID == rL.getLaunch_ID()) {
+                            System.out.println("Launch ID already exists");
+                            correctEntry = true;
+                        }
                     }
                 }
+
             } catch (NumberFormatException e) {
                 System.out.println("Please enter only a number");
                 correctEntry = true;
@@ -75,6 +84,10 @@ public class RocketCollections {
                 correctEntry = false;
                 String numCrew = dataInput.nextLine();
                 numberCrew = Integer.parseInt(numCrew);
+                if (numberCrew < 0 ){
+                    System.out.println("Please only enter positive numbers");
+                    correctEntry = true;
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Please enter only numbers");
                 correctEntry = true;
@@ -93,6 +106,10 @@ public class RocketCollections {
                 correctEntry = false;
                 String tonnage = dataInput.nextLine();
                 numberTonnage = Double.parseDouble(tonnage);
+                if (numberTonnage < 0 ){
+                    System.out.println("Please only enter positive numbers");
+                    correctEntry = true;
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Please enter only numbers");
                 correctEntry = true;
@@ -136,6 +153,7 @@ public class RocketCollections {
                 // throws invalid message
                 if (optionNumber < 0 || optionNumber > 2) {
                     System.out.println("Invalid option");
+                    correctEntry = true;
                 }
             } catch (NumberFormatException e) { // catch if user enters a non number
                 System.out.println("Please enter only numbers");
@@ -163,8 +181,12 @@ public class RocketCollections {
     }
 
     public static void readData(){
-        for (RocketDataObject rL : RocketDataObject.launchList) {
-            readDataObject(rL);
+        if (RocketDataObject.launchList.isEmpty()){
+            System.out.println("No Data");
+        }else {
+            for (RocketDataObject rL : RocketDataObject.launchList) {
+                readDataObject(rL);
+            }
         }
     }
 
@@ -174,6 +196,7 @@ public class RocketCollections {
             //checks if there is data in the arraylist
             System.out.println("No Data");
         }else{
+            //gets user launch_ID selection
             Scanner dataInput = new Scanner(System.in);
                 System.out.println("Select a row, enter the Launch ID");
             String l_ID = dataInput.nextLine();
@@ -261,7 +284,7 @@ public class RocketCollections {
                         case 2: // delete row
                             if(RocketDataObject.launchList.isEmpty()){
                                 System.out.println("No Data to delete");
-                            }else {
+                            } else {
                                 System.out.println("The data below has been deleted");
                                 readDataObject(RocketDataObject.launchList.get(i));
                                 RocketDataObject.launchList.remove(RocketDataObject.launchList.get(i));
@@ -269,8 +292,8 @@ public class RocketCollections {
                             break;
                     }
                 }
-                else if(i == RocketDataObject.launchList.size()){
-                    System.out.println("This Launch ID does not exist");
+                else if(i == RocketDataObject.launchList.size()-1){
+                    System.out.println("This Launch ID does not exist\n");
                 }
             }
         }
@@ -278,10 +301,15 @@ public class RocketCollections {
 
     public static void tonnageToOrbit(){
         double totalTonnage = 0;
+        DecimalFormat round = new DecimalFormat("0.00");
+        if (RocketDataObject.launchList.isEmpty()){
+            System.out.println("No Data");
+        }else{
         for (RocketDataObject rL : RocketDataObject.launchList) {
             totalTonnage += rL.getTonnage_to_Orbit();
+            }
+        System.out.println("Total Tonnage to Orbit: "+round.format(totalTonnage)+"\n");
         }
-        System.out.println("Total Tonnage to Orbit: "+totalTonnage+"\n");
     }
 
     public static void fileDataEntry(){
@@ -298,7 +326,7 @@ public class RocketCollections {
         int crew = 0;
         String payload = null;
         double tonnage = 0;
-        //RocketDataObject launchData = null;
+        RocketDataObject launchData = null;
 
         System.out.println("Enter the absolute path to your text (.txt) file");
         //allows the user to reenter path if error
@@ -319,7 +347,6 @@ public class RocketCollections {
             count++;
 
             try {
-
                 l_ID = Integer.parseInt(splitData[0]);
                 l_Provider = splitData[1];
                 l_Location = splitData[2];
@@ -328,18 +355,29 @@ public class RocketCollections {
                 crew = Integer.parseInt(splitData[5]);
                 payload = splitData[6];
                 tonnage = Double.parseDouble(splitData[7]);
+                launchData = new RocketDataObject
+                        (l_ID,l_Provider,l_Location,l_Vehicle,l_Date,crew,payload,tonnage);
+                RocketDataObject.launchList.add(launchData);
+                readDataObject(launchData);
 
             }catch (NumberFormatException e){
-                System.out.println("Invalid integer input on line: " + count);
+                System.out.println("Invalid integer input on line: " + count + " Row not added\n");
             }catch (DateTimeParseException e){
-                System.out.println("Invalid date input on line: " + count);
+                System.out.println("Invalid date input on line: " + count + " Row not added\n");
             }
 
-            RocketDataObject launchData = new RocketDataObject
-                    (l_ID,l_Provider,l_Location,l_Vehicle,l_Date,crew,payload,tonnage);
-
-            RocketDataObject.launchList.add(launchData);
-            readDataObject(launchData);
+            for (int i = RocketDataObject.launchList.size()-1; i > 0 ; i--) {
+                // loops though Arraylist from the end
+                if ((count > 1)) {
+                    assert launchData != null;
+                    if (launchData.getLaunch_ID() == RocketDataObject.launchList.get(i-1).getLaunch_ID()) {
+                        // if the current launch ID matches an ID in the arraylist that entry is deleted.
+                        System.out.println("Row " + count + " Launch ID matches existing data. please update file\n");
+                        RocketDataObject.launchList.remove(launchData);
+                    }
+                }
+            }
+           /*readDataObject(launchData);*/
         }
     }
 
