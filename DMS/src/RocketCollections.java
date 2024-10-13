@@ -214,6 +214,8 @@ public class RocketCollections {
 
     public static void updateDeleteData(int optionNumber){
 
+        int number_ID = 0;
+        boolean rowInput = true;
         if(RocketDataObject.launchList.isEmpty()){
             //checks if there is data in the arraylist
             System.out.println("No Data");
@@ -221,8 +223,20 @@ public class RocketCollections {
             //gets user launch_ID from user
             Scanner dataInput = new Scanner(System.in);
                 System.out.println("Select a row, enter the Launch ID");
-            String l_ID = dataInput.nextLine();
-            int number_ID = Integer.parseInt(l_ID);
+                while(rowInput){
+                    try{
+                        rowInput = false;
+                        String l_ID = dataInput.nextLine();
+                        number_ID = Integer.parseInt(l_ID);
+                        if(number_ID < 0){
+                            System.out.println("Enter only positive numbers");
+                            rowInput = true;
+                        }
+                    }catch (NumberFormatException e){
+                        System.out.println("Please only enter a number");
+                        rowInput = true;
+                    }
+                }
 
             for (int i = 0 ; i < RocketDataObject.launchList.size(); i++){
                 //loops thought the arraylist
@@ -403,7 +417,7 @@ public class RocketCollections {
 
             for (int i = RocketDataObject.launchList.size()-1; i > 0 ; i--) {
                 // loops though Arraylist from the end
-                if ((count > 1)) {
+                if ((count > 0)) {
                     assert launchData != null;
                     if (launchData.getLaunch_ID() == RocketDataObject.launchList.get(i-1).getLaunch_ID()) {
                         // if the current launch ID matches an ID in the arraylist that entry is deleted.

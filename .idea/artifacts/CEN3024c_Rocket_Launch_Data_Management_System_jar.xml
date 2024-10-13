@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CEN3024c-Rocket_Launch_Data_Management_System:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CEN3024c_Rocket_Launch_Data_Management_System_jar</output-path>
+    <root id="archive" name="CEN3024c-Rocket_Launch_Data_Management_System.jar">
+      <element id="module-output" name="CEN3024c-Rocket_Launch_Data_Management_System" />
+    </root>
+  </artifact>
+</component>
