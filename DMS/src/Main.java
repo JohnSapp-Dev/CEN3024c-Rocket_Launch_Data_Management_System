@@ -1,19 +1,26 @@
+/*
+* The Main.java class is responsible for starting the program. This class starts the GUI thread and calls the
+* input and output logic to begin.
+*/
+
 import java.util.Scanner;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        Main main = new Main();
+        GUIThread GUI = new GUIThread();
+        GUI.start();
+        /*Main main = new Main();
         main.WelcomeMessage();
-        main.menu();
+        main.menu();*/
     }
 
     public Main(){
         // default constructor
     }
 
-    public void menu(){
+   /* public void menu(){
 
         boolean exit = true;
         //creates user input object
@@ -62,7 +69,7 @@ public class Main {
                     RocketCollections.updateDeleteData(2);
                     break;
                 case 5:
-                    RocketCollections.tonnageToOrbit();
+                   // RocketCollections.tonnageToOrbit();
                     break;
                 case 6:
                     System.out.println("Thank you for using the program");
@@ -70,9 +77,9 @@ public class Main {
                     break;
             }
         }
-    }
+    }*/
 
-    public void WelcomeMessage(){
+    /*public void WelcomeMessage(){
         System.out.println("Welcome to the Rocket Launch Data Management System\n");
-    }
+    }*/
 }

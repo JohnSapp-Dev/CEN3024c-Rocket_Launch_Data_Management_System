@@ -1,3 +1,7 @@
+/*
+* The RocketDataObject.java class holds the structure for the "RocketDataObject" data type.
+*/
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -77,5 +81,9 @@ public class RocketDataObject {
     }
     public void setTonnage_to_Orbit(double Tonnage_to_Orbit){
         this.Tonnage_to_Orbit = Tonnage_to_Orbit;
+    }
+
+    public static ArrayList<RocketDataObject> getData(){
+        return launchList;
     }
 }
