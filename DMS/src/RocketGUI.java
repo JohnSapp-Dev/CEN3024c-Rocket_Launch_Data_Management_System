@@ -30,7 +30,7 @@ public class RocketGUI extends JFrame{
     private JButton TonnagaCal;
     private JButton UpdateDataButton;
     private JButton DeleteButton;
-    /*private JLabel IDLabel;
+    private JLabel IDLabel;
     private JLabel ProviderLabel;
     private JLabel LocationLabel;
     private JLabel VehicleLabel;
@@ -42,7 +42,7 @@ public class RocketGUI extends JFrame{
     private JPanel LabelPanel;
     private JPanel TextPanel;
     private JPanel TablePanel;
-    private JPanel TableButtonPanel;*/
+    private JPanel TableButtonPanel;
 
     //public JList rocketList;
 
@@ -202,10 +202,11 @@ class AddActionListener implements ActionListener {
                 GUI.getCrewTF().setText("");
             }
 
-
         }catch (NumberFormatException x) {
             JOptionPane.showMessageDialog(null,"Please enter only a number");
             addToTable = false;
+            GUI.getIDTF().setText("");
+            GUI.getCrewTF().setText("");
         }
         //gets text field data
         String provider = GUI.getProviderTF().getText();
