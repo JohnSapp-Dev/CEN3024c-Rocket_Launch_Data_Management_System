@@ -4,9 +4,9 @@ Throughout the class, we have gone through the following steps of the SDLC:
 - Defining program requirements
 - Developing an implementation plan
 - Designing a test plan
-- Coding phase 1 -- Logic & input validation <- current state
+- Coding phase 1 -- Logic & input validation 
 - Coding phase 2 -- Testing
-- Coding phase 3 -- Adding GUI
+- Coding phase 3 -- Adding GUI <- current state
 - Coding phase 4 -- Adding database support
 
 ---
