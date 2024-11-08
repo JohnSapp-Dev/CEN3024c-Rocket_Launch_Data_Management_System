@@ -1,329 +1,650 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="RocketGUI">
-  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="1" left="1" bottom="1" right="1"/>
+  <tabbedpane id="41e35" binding="MainPanel">
     <constraints>
-      <xy x="1" y="6" width="500" height="551"/>
+      <xy x="1" y="6" width="940" height="551"/>
     </constraints>
     <properties>
-      <background color="-14735824"/>
-      <foreground color="-13947600"/>
-      <maximumSize width="500" height="300"/>
-      <minimumSize width="500" height="300"/>
+      <background color="-4926738"/>
+      <foreground color="-14735824"/>
     </properties>
     <border type="none"/>
     <children>
-      <grid id="99c4" binding="AddButtonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="3283" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="true" same-size-vertically="true" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <tabbedpane title="Table"/>
         </constraints>
         <properties>
           <background color="-14735824"/>
-          <foreground color="-13947600"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="3ceb9" class="javax.swing.JButton" binding="AddButton">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13551550"/>
-              <font name="Nasalization"/>
-              <foreground color="-4926738"/>
-              <text value="Add"/>
-              <toolTipText value="Adds the Information ablove to the database"/>
-            </properties>
-          </component>
-          <component id="1a541" class="javax.swing.JButton" binding="fileAddButton" default-binding="true">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13551550"/>
-              <font name="Nasalization" style="0"/>
-              <foreground color="-4926738"/>
-              <text value="File Add"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="f00a9" binding="LabelPanel" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-14735824"/>
-          <foreground color="-13947600"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="ff555" class="javax.swing.JLabel" binding="IDLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4926738"/>
-              <text value="Launch ID"/>
-            </properties>
-          </component>
-          <component id="f08f1" class="javax.swing.JLabel" binding="ProviderLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4926738"/>
-              <text value="Launch Provider"/>
-            </properties>
-          </component>
-          <component id="1313f" class="javax.swing.JLabel" binding="LocationLabel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4926738"/>
-              <text value="launch Location"/>
-            </properties>
-          </component>
-          <component id="c21ad" class="javax.swing.JLabel" binding="VehicleLabel">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4926738"/>
-              <text value="Launch Vehicle"/>
-            </properties>
-          </component>
-          <component id="dd294" class="javax.swing.JLabel" binding="DateLabel">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4926738"/>
-              <text value="Launch Date"/>
-            </properties>
-          </component>
-          <component id="df20d" class="javax.swing.JLabel" binding="CrewLabel">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4926738"/>
-              <text value="Number of Crew"/>
-              <toolTipText value=""/>
-            </properties>
-          </component>
-          <component id="8bc84" class="javax.swing.JLabel" binding="PayloadLabel">
-            <constraints>
-              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4926738"/>
-              <text value="Payload"/>
-            </properties>
-          </component>
-          <component id="1e926" class="javax.swing.JLabel" binding="TonnageLabel">
-            <constraints>
-              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-4926738"/>
-              <text value="Tonnage to Orbit"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="4492e" binding="TextPanel" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="true" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <minimum-size width="50" height="-1"/>
-            <maximum-size width="250" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <background color="-14735824"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="63d94" class="javax.swing.JTextField" binding="IDTF">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <enabled value="true"/>
-              <font name="Arial" size="14" style="1"/>
-              <text value=""/>
-              <toolTipText value="Enter the Launch ID"/>
-            </properties>
-          </component>
-          <component id="542ad" class="javax.swing.JTextField" binding="ProviderTF">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="14" style="1"/>
-              <toolTipText value="Enter the Launch Provider"/>
-            </properties>
-          </component>
-          <component id="c06a5" class="javax.swing.JTextField" binding="LocationTF">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="14" style="1"/>
-              <toolTipText value="Enter the Launch Location"/>
-            </properties>
-          </component>
-          <component id="fd79c" class="javax.swing.JTextField" binding="VehicleTF">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="14" style="1"/>
-              <toolTipText value="Enter the Launch Vehical"/>
-            </properties>
-          </component>
-          <component id="5f214" class="javax.swing.JTextField" binding="DateTF">
-            <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="14" style="1"/>
-              <toolTipText value="Enter the Launch Date"/>
-            </properties>
-          </component>
-          <component id="d761e" class="javax.swing.JTextField" binding="CrewTF">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="14" style="1"/>
-              <toolTipText value="Enter the number of crew or 0"/>
-            </properties>
-          </component>
-          <component id="811da" class="javax.swing.JTextField" binding="PayloadTF">
-            <constraints>
-              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="14" style="1"/>
-              <toolTipText value="Enter the Payload"/>
-            </properties>
-          </component>
-          <component id="3be1a" class="javax.swing.JTextField" binding="TonnageTF">
-            <constraints>
-              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="14" style="1"/>
-              <toolTipText value="Enter the Tonnage launched to orbit"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="8568a" binding="TablePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="5"/>
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-14735824"/>
+          <enabled value="true"/>
           <foreground color="-14735824"/>
         </properties>
         <border type="none"/>
         <children>
-          <scrollpane id="6f460">
+          <grid id="27dc6" binding="AddToDBPanel" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="1" left="1" bottom="1" right="1"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <minimum-size width="600" height="-1"/>
-              </grid>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-14735824"/>
-              <foreground color="-13551550"/>
+              <foreground color="-13947600"/>
+              <maximumSize width="500" height="300"/>
+              <minimumSize width="500" height="300"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="7ca2c" class="javax.swing.JTable" binding="DataTable">
-                <constraints/>
+              <grid id="99c4" binding="AddButtonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
                 <properties>
-                  <background color="-13551550"/>
-                  <foreground color="-4926738"/>
-                  <gridColor color="-13551550"/>
-                  <intercellSpacing width="5" height="1"/>
-                  <minimumSize width="600" height="40"/>
-                  <rowHeight value="25"/>
-                  <selectionForeground color="-13551550"/>
+                  <background color="-14735824"/>
+                  <foreground color="-13947600"/>
                 </properties>
-              </component>
+                <border type="none"/>
+                <children>
+                  <component id="3ceb9" class="javax.swing.JButton" binding="AddButton">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-13551550"/>
+                      <font name="Nasalization"/>
+                      <foreground color="-4926738"/>
+                      <text value="Add"/>
+                      <toolTipText value="Adds the Information ablove to the database"/>
+                    </properties>
+                  </component>
+                  <component id="1a541" class="javax.swing.JButton" binding="fileAddButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-13551550"/>
+                      <font name="Nasalization" style="0"/>
+                      <foreground color="-4926738"/>
+                      <text value="File Add"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="f00a9" binding="LabelPanel" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14735824"/>
+                  <foreground color="-13947600"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="ff555" class="javax.swing.JLabel" binding="IDLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-4926738"/>
+                      <text value="Launch ID"/>
+                    </properties>
+                  </component>
+                  <component id="f08f1" class="javax.swing.JLabel" binding="ProviderLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-4926738"/>
+                      <text value="Launch Provider"/>
+                    </properties>
+                  </component>
+                  <component id="1313f" class="javax.swing.JLabel" binding="LocationLabel">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-4926738"/>
+                      <text value="launch Location"/>
+                    </properties>
+                  </component>
+                  <component id="c21ad" class="javax.swing.JLabel" binding="VehicleLabel">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-4926738"/>
+                      <text value="Launch Vehicle"/>
+                    </properties>
+                  </component>
+                  <component id="dd294" class="javax.swing.JLabel" binding="DateLabel">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-4926738"/>
+                      <text value="Launch Date"/>
+                    </properties>
+                  </component>
+                  <component id="df20d" class="javax.swing.JLabel" binding="CrewLabel">
+                    <constraints>
+                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-4926738"/>
+                      <text value="Number of Crew"/>
+                      <toolTipText value=""/>
+                    </properties>
+                  </component>
+                  <component id="8bc84" class="javax.swing.JLabel" binding="PayloadLabel">
+                    <constraints>
+                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-4926738"/>
+                      <text value="Payload"/>
+                    </properties>
+                  </component>
+                  <component id="1e926" class="javax.swing.JLabel" binding="TonnageLabel">
+                    <constraints>
+                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <foreground color="-4926738"/>
+                      <text value="Tonnage to Orbit"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="4492e" binding="TextPanel" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="true" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="-1"/>
+                    <maximum-size width="250" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-14735824"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="63d94" class="javax.swing.JTextField" binding="IDTF">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <enabled value="true"/>
+                      <font name="Arial" size="14" style="1"/>
+                      <text value=""/>
+                      <toolTipText value="Enter the Launch ID"/>
+                    </properties>
+                  </component>
+                  <component id="542ad" class="javax.swing.JTextField" binding="ProviderTF">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="14" style="1"/>
+                      <toolTipText value="Enter the Launch Provider"/>
+                    </properties>
+                  </component>
+                  <component id="c06a5" class="javax.swing.JTextField" binding="LocationTF">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="14" style="1"/>
+                      <foreground color="-4926738"/>
+                      <toolTipText value="Enter the Launch Location"/>
+                    </properties>
+                  </component>
+                  <component id="fd79c" class="javax.swing.JTextField" binding="VehicleTF">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="14" style="1"/>
+                      <foreground color="-16777216"/>
+                      <toolTipText value="Enter the Launch Vehical"/>
+                    </properties>
+                  </component>
+                  <component id="5f214" class="javax.swing.JTextField" binding="DateTF">
+                    <constraints>
+                      <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="14" style="1"/>
+                      <toolTipText value="Enter the Launch Date"/>
+                    </properties>
+                  </component>
+                  <component id="d761e" class="javax.swing.JTextField" binding="CrewTF">
+                    <constraints>
+                      <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="14" style="1"/>
+                      <toolTipText value="Enter the number of crew or 0"/>
+                    </properties>
+                  </component>
+                  <component id="811da" class="javax.swing.JTextField" binding="PayloadTF">
+                    <constraints>
+                      <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="14" style="1"/>
+                      <toolTipText value="Enter the Payload"/>
+                    </properties>
+                  </component>
+                  <component id="3be1a" class="javax.swing.JTextField" binding="TonnageTF">
+                    <constraints>
+                      <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <font name="Arial" size="14" style="1"/>
+                      <toolTipText value="Enter the Tonnage launched to orbit"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="8568a" binding="TablePanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="5"/>
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14735824"/>
+                  <foreground color="-14735824"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <scrollpane id="6f460">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <minimum-size width="600" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <background color="-14735824"/>
+                      <foreground color="-13551550"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="7ca2c" class="javax.swing.JTable" binding="DataTable">
+                        <constraints/>
+                        <properties>
+                          <background color="-13551550"/>
+                          <foreground color="-4926738"/>
+                          <gridColor color="-13551550"/>
+                          <intercellSpacing width="5" height="1"/>
+                          <minimumSize width="600" height="40"/>
+                          <rowHeight value="25"/>
+                          <selectionForeground color="-13551550"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+              <grid id="883b" binding="TableButtonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14735824"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="6ec97" class="javax.swing.JButton" binding="TonnageCal">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-13551550"/>
+                      <font name="Nasalization"/>
+                      <foreground color="-4926738"/>
+                      <text value="Calcluate Tonnage"/>
+                    </properties>
+                  </component>
+                  <component id="4b0af" class="javax.swing.JButton" binding="UpdateDataButton">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-13551550"/>
+                      <font name="Nasalization"/>
+                      <foreground color="-4926738"/>
+                      <text value="Up Date Row"/>
+                    </properties>
+                  </component>
+                  <component id="21eb6" class="javax.swing.JButton" binding="DeleteButton">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-13551550"/>
+                      <font name="Nasalization"/>
+                      <foreground color="-4926738"/>
+                      <text value="Delete"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="56cd5" binding="optionPanel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14735824"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="b270a" class="javax.swing.JComboBox" binding="sortCombo">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-4926738"/>
+                      <foreground color="-14735824"/>
+                    </properties>
+                  </component>
+                  <hspacer id="8aaaf">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <component id="a9053" class="javax.swing.JButton" binding="button1" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-13551550"/>
+                      <font name="Nasalization"/>
+                      <foreground color="-4926738"/>
+                      <label value="Sync"/>
+                      <text value="Sync"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
-          </scrollpane>
+          </grid>
         </children>
       </grid>
-      <grid id="883b" binding="TableButtonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="77e4c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <tabbedpane title="Database"/>
         </constraints>
         <properties>
-          <background color="-14735824"/>
+          <foreground color="-13947600"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="6ec97" class="javax.swing.JButton" binding="TonnagaCal">
+          <grid id="6d1f9" binding="DBLoginPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-13551550"/>
-              <font name="Nasalization"/>
-              <foreground color="-4926738"/>
-              <text value="Calcluate Tonnage"/>
+              <background color="-14735824"/>
+              <foreground color="-14735824"/>
             </properties>
-          </component>
-          <component id="4b0af" class="javax.swing.JButton" binding="UpdateDataButton">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13551550"/>
-              <font name="Nasalization"/>
-              <foreground color="-4926738"/>
-              <text value="Up Date Row"/>
-            </properties>
-          </component>
-          <component id="21eb6" class="javax.swing.JButton" binding="DeleteButton">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-13551550"/>
-              <font name="Nasalization"/>
-              <foreground color="-4926738"/>
-              <text value="Delete"/>
-            </properties>
-          </component>
+            <border type="none"/>
+            <children>
+              <grid id="2c9f2" layout-manager="GridLayoutManager" row-count="7" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14735824"/>
+                  <enabled value="true"/>
+                  <foreground color="-1"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="44b7a" class="javax.swing.JLabel" binding="userNameLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-4926738"/>
+                      <foreground color="-4926738"/>
+                      <text value="User Name"/>
+                    </properties>
+                  </component>
+                  <vspacer id="1c36d">
+                    <constraints>
+                      <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="71958" class="javax.swing.JLabel" binding="PassWordLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-4926738"/>
+                      <foreground color="-4926738"/>
+                      <text value="Password"/>
+                    </properties>
+                  </component>
+                  <component id="72e5a" class="javax.swing.JTextField" binding="UserNameTF">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="21b61" class="javax.swing.JPasswordField" binding="passwordTF">
+                    <constraints>
+                      <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <echoChar value="•"/>
+                    </properties>
+                  </component>
+                  <grid id="96c0f" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-14735824"/>
+                      <foreground color="-14735824"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="11f12" class="javax.swing.JLabel" binding="DBConnectedImageLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <enabled value="true"/>
+                          <foreground color="-4926738"/>
+                          <text value=""/>
+                          <toolTipText value="displays connetion status"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <component id="e9915" class="javax.swing.JLabel" binding="DBName">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-4926738"/>
+                      <foreground color="-4926738"/>
+                      <text value="Database Name"/>
+                    </properties>
+                  </component>
+                  <component id="e6291" class="javax.swing.JButton" binding="logInButton">
+                    <constraints>
+                      <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-13551550"/>
+                      <font name="Nasalization"/>
+                      <foreground color="-4926738"/>
+                      <text value="Login"/>
+                    </properties>
+                  </component>
+                  <component id="7c230" class="javax.swing.JTextField" binding="DBNameTF">
+                    <constraints>
+                      <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties/>
+                  </component>
+                  <component id="5e7d0" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-14735824"/>
+                      <foreground color="-4926738"/>
+                      <text value="Table Name"/>
+                    </properties>
+                  </component>
+                  <component id="38613" class="javax.swing.JTextField" binding="TableNameTF">
+                    <constraints>
+                      <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <background color="-1"/>
+                      <caretColor color="-13947600"/>
+                      <selectedTextColor color="-4926738"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="c59e4" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14735824"/>
+                  <foreground color="-14735824"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="e78d" class="javax.swing.JLabel" binding="DBSetUp">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="3" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-14735824"/>
+                      <foreground color="-4926738"/>
+                      <text value="Database setup"/>
+                    </properties>
+                  </component>
+                  <hspacer id="1e97e">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </hspacer>
+                  <vspacer id="9d116">
+                    <constraints>
+                      <grid row="2" column="0" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <component id="343a5" class="javax.swing.JRadioButton" binding="FormatDBButton">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-14735824"/>
+                      <enabled value="false"/>
+                      <foreground color="-4926738"/>
+                      <text value="Format Database"/>
+                      <toolTipText value="Login to format database"/>
+                    </properties>
+                  </component>
+                  <vspacer id="43ed1">
+                    <constraints>
+                      <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <grid id="1cb70" binding="formatOptionsPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="0" bottom="0" right="0"/>
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <background color="-14735824"/>
+                      <enabled value="false"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="38e4f" class="javax.swing.JCheckBox" binding="FormatColumnsCB">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-14735824"/>
+                          <enabled value="false"/>
+                          <foreground color="-4926738"/>
+                          <text value="Formate Database Columns"/>
+                          <toolTipText value="Will format the database to match the required column names. This will delete any information currently in your selected Database."/>
+                        </properties>
+                      </component>
+                      <component id="3a9e7" class="javax.swing.JButton" binding="FormatSelectionButton">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="1" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <background color="-13551550"/>
+                          <enabled value="false"/>
+                          <font name="Nasalization"/>
+                          <foreground color="-4926738"/>
+                          <text value="Apply"/>
+                          <toolTipText value="Applies the changes above"/>
+                        </properties>
+                      </component>
+                      <hspacer id="1bc97">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                      <hspacer id="8aaaa">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </hspacer>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>
-  </grid>
+  </tabbedpane>
 </form>

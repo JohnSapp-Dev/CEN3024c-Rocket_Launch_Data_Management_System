@@ -4,6 +4,7 @@
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
@@ -22,12 +23,12 @@ public class RocketGUI extends JFrame{
     private JTextField DateTF;
     private JTextField CrewTF;
     private JTextField PayloadTF;
-    private JPanel MainPanel;
+    private JPanel AddToDBPanel;
     private JTextField TonnageTF;
     private JButton AddButton;
     private JButton fileAddButton;
     private JTable DataTable;
-    private JButton TonnagaCal;
+    private JButton TonnageCal;
     private JButton UpdateDataButton;
     private JButton DeleteButton;
     private JLabel IDLabel;
@@ -43,6 +44,26 @@ public class RocketGUI extends JFrame{
     private JPanel TextPanel;
     private JPanel TablePanel;
     private JPanel TableButtonPanel;
+    private JLabel userNameLabel;
+    private JLabel PassWordLabel;
+    private JTextField UserNameTF;
+    private JPasswordField passwordTF;
+    private JButton logInButton;
+    private JLabel DBConnectedImageLabel;
+    private JTabbedPane MainPanel;
+    private JPanel DBLoginPanel;
+    private JLabel DBName;
+    private JTextField DBNameTF;
+    private JLabel DBSetUp;
+    private JRadioButton FormatDBButton;
+    private JCheckBox FormatColumnsCB;
+    private JPanel formatOptionsPanel;
+    private JButton FormatSelectionButton;
+    private JTextField TableNameTF;
+    private JComboBox sortCombo;
+    private JButton button1;
+    private JPanel optionPanel;
+    private boolean connectedToDB = false;
 
     //public JList rocketList;
 
@@ -54,20 +75,24 @@ public class RocketGUI extends JFrame{
 
     public void init() {
 
-        JPanel MainPanel = this.getMainPanel();
+        JTabbedPane MainPanel = this.getMainPanel();
         JFrame frame = new JFrame();
         this.createTable();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Rocket Launch Data Management System");
         frame.setContentPane(MainPanel);
+        connectedStatus(false);
+        createSortComboBox();
 
         //button action
         this.AddButton.addActionListener(new AddActionListener(this));
         this.fileAddButton.addActionListener(new AddFileActionListener(this));
-        this.TonnagaCal.addActionListener(new calculateTonnagaActionListener(this));
+        this.TonnageCal.addActionListener(new calculateTonnagaActionListener(this));
         this.DeleteButton.addActionListener(new deleteRowActionListener(this));
         this.UpdateDataButton.addActionListener(new updateRowActionListener(this));
-
+        this.logInButton.addActionListener(new loginActionListener(this));
+        this.FormatDBButton.addActionListener(new formatDataSelection(this));
+        this.FormatSelectionButton.addActionListener(new formatDatabase(this));
 
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -100,6 +125,7 @@ public class RocketGUI extends JFrame{
                 null,
                 new String[]{"ID", "Provider", "Location", "Vehicle","Date", "Crew", "Payload","Tonnage"}
         ));
+        //sets default column width
         TableColumnModel columnModel = DataTable.getColumnModel();
         columnModel.getColumn(0).setMinWidth(25);
         columnModel.getColumn(1).setMinWidth(75);
@@ -110,17 +136,28 @@ public class RocketGUI extends JFrame{
         columnModel.getColumn(6).setMinWidth(150);
         columnModel.getColumn(7).setMinWidth(25);
 
-
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        columnModel.getColumn(0).setCellRenderer(centerRenderer);
+        columnModel.getColumn(4).setCellRenderer(centerRenderer);
+        columnModel.getColumn(5).setCellRenderer(centerRenderer);
+        columnModel.getColumn(7).setCellRenderer(centerRenderer);
 
     }
-    public JPanel getMainPanel() {
-        return MainPanel;
+
+    private void createSortComboBox(){
+        sortCombo.setModel(new DefaultComboBoxModel(new String[]{"Sort_______","Sort A to Z", "Sort Z to A",
+                "Sort Date oldest first", "Sort Date Newest first"}));
+
     }
+
     // getter methods
     public static void constructGUI(){
         RocketGUI Rocket = new RocketGUI();
     }
-
+    public JTabbedPane getMainPanel() {
+        return MainPanel;
+    }
     public JTextField getIDTF() {
         return IDTF;
     }
@@ -145,14 +182,38 @@ public class RocketGUI extends JFrame{
     public JTextField getTonnageTF() {
         return TonnageTF;
     }
+    public JTextField getDatabaseNameTF() {return DBNameTF;}
+    public JTextField getUserNameTF() {return UserNameTF;}
+    public JTextField getPasswordTF(){return passwordTF;}
     public JTable getTable(){
         return DataTable;
     }
     public JButton getAddButton(){
         return AddButton;
     }
+    public JButton getLogInButton(){return logInButton;}
+    public JCheckBox getFormatColumnsCB() {return FormatColumnsCB;}
+    public boolean getConnectedToDB() {return connectedToDB;}
+    public JRadioButton getFormatDBButton() {return FormatDBButton;}
+    public JButton getFormatSelectionButton() {return FormatSelectionButton;}
+    public JTextField getTableNameTF() {return TableNameTF;}
+
+    public void connectedStatus(boolean connection){
+        String connectedPath = "assets/smallConnected.png";
+        String notConnectedPath = "assets/smallNotConnected.png";
+        String imagePath;
+        if (connection){
+            imagePath = connectedPath;
+        }else{
+            imagePath = notConnectedPath;
+        }
+        ImageIcon icon = new ImageIcon(imagePath);
+        DBConnectedImageLabel.setIcon(icon);
+        connectedToDB = connection;
+    }
 
 }
+
 // this class holds the logic to add rows to the database
 class AddActionListener implements ActionListener {
 
@@ -210,8 +271,8 @@ class AddActionListener implements ActionListener {
         }
         //gets text field data
         String provider = GUI.getProviderTF().getText();
-        String location = GUI.getVehicleTF().getText();
-        String vehical = GUI.getLocationTF().getText();
+        String location = GUI.getLocationTF().getText();
+        String vehicle = GUI.getVehicleTF().getText();
         String payload = GUI.getPayloadTF().getText();
 
         //gets and formats data text field data
@@ -231,7 +292,7 @@ class AddActionListener implements ActionListener {
         //creates RocketDataObject if no errors
         if (addToTable) {
             RocketDataObject launchData = new RocketDataObject
-                    (IDNumber,provider,location,vehical,formattedDateType,NumCrew,payload,NumTonnage);
+                    (IDNumber,provider,location,vehicle,formattedDateType,NumCrew,payload,NumTonnage);
             RocketDataObject.launchList.add(launchData);
             GUI.updateTable();
             GUI.getIDTF().setText("");
@@ -243,8 +304,15 @@ class AddActionListener implements ActionListener {
             GUI.getPayloadTF().setText("");
             GUI.getTonnageTF().setText("");
             GUI.getAddButton().setText("Add");
-        }
 
+            // adds row to database if connected
+            if(MySQLHandler.connected) {
+                loginActionListener.MySQL.MySQLAdd(IDNumber,provider,location,
+                        vehicle,formattedDateType,NumCrew,payload,NumTonnage);
+            }else{
+                JOptionPane.showMessageDialog(null,"Not connected to database. Row updated locally");
+            }
+        }
     }
 }
 
@@ -259,7 +327,11 @@ class AddFileActionListener implements ActionListener{
 
     public void actionPerformed (ActionEvent e){
         //calls the function to open a file via a gui window
-        RocketCollections.fileDataEntryGUI(OpenFileExplorer());
+        try {
+            RocketCollections.fileDataEntryGUI(OpenFileExplorer());
+        }catch(NullPointerException x) {
+            JOptionPane.showMessageDialog(null, "No file selected");
+        }
         //updates the table after the file is added
         GUI.updateTable();
     }
@@ -276,10 +348,12 @@ class AddFileActionListener implements ActionListener{
                 System.out.println(selectFile);
                 return String.valueOf(selectFile);
             }
+            if(result ==JFileChooser.CANCEL_OPTION){
+                System.out.println("Cancelled");
+            }
         return ".";
     }
 }
-
 
 // This class hold the logic to calculate the total tonnage stored in the database
 class calculateTonnagaActionListener implements ActionListener{
@@ -316,6 +390,12 @@ class deleteRowActionListener implements ActionListener{
                 int RowNumber = GUI.getTable().getSelectedRow();
                 //calls the delete method
                 RocketCollections.deleteRowGUI(IDValue, RowNumber);
+                // updates the database if connected
+                if(MySQLHandler.connected) {
+                    loginActionListener.MySQL.MySQLRemove(IDValue);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Not connected to database. Row updated locally");
+                }
                 GUI.updateTable();
             }
         // error handling
@@ -349,6 +429,12 @@ class updateRowActionListener implements  ActionListener{
                 int RowNumber = GUI.getTable().getSelectedRow();
                 //calls the update method
                 RocketCollections.UpdateRowGUI(IDValue, RowNumber,GUI);
+                // updates the database if connected
+                if(MySQLHandler.connected) {
+                    loginActionListener.MySQL.MySQLRemove(IDValue);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Not connected to database. Row updated locally");
+                }
                 GUI.updateTable();
             }
         // error handling
@@ -357,5 +443,106 @@ class updateRowActionListener implements  ActionListener{
         }catch (ClassCastException w){
             JOptionPane.showMessageDialog(null, "Please select the ID number");
         }
+    }
+}
+
+// This class holds the logic to log into/out of the users database
+class loginActionListener implements  ActionListener{
+    RocketGUI GUI;
+    static String userName = null;
+    static String password = null;
+    static String DBName = null;
+    static String tableName = null;
+    static MySQLHandler MySQL;
+
+    public loginActionListener (RocketGUI inputGUI)
+    {
+        GUI = inputGUI;
+        MySQL = null;
+
+    }
+
+    public void actionPerformed (ActionEvent e) {
+        userName = GUI.getUserNameTF().getText();
+        password = GUI.getPasswordTF().getText();
+        DBName = GUI.getDatabaseNameTF().getText();
+        tableName = GUI.getTableNameTF().getText();
+        MySQL = new MySQLHandler(userName, password, DBName,tableName);
+
+        if(GUI.getLogInButton().getText().equals("Login")) {
+            //runs if not logged into the database
+            if (MySQL.getConnectionError()) {
+                //error handling
+                JOptionPane.showMessageDialog(null, "Could not connect to the database");
+                GUI.connectedStatus(false);
+            }else{
+                //changes the connected image and button text
+                GUI.connectedStatus(true);
+                GUI.getFormatDBButton().setEnabled(true);
+                GUI.getFormatDBButton().setToolTipText("Select to format the database");
+                GUI.getLogInButton().setText("Log Out");
+            }
+            // runs if already signed in to the database
+        }else if (GUI.getLogInButton().getText().equals("Log Out")){
+            MySQL.closeConnection();
+            //changes the image and button text
+            GUI.getFormatDBButton().setToolTipText("Login to format database");
+            GUI.getFormatDBButton().setEnabled(false);
+            GUI.connectedStatus(false);
+            GUI.getLogInButton().setText("Login");
+        }
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+}
+
+// This class holds the logic to let the user select format options
+class formatDataSelection implements  ActionListener{
+    RocketGUI GUI;
+
+    public formatDataSelection (RocketGUI inputGUI)
+    {
+        GUI = inputGUI;
+    }
+
+    public void actionPerformed (ActionEvent e){
+        if(GUI.getConnectedToDB()) {
+            //toggles if the format options are grayed out
+            GUI.getFormatColumnsCB().setEnabled(!GUI.getFormatColumnsCB().isEnabled());
+            GUI.getFormatSelectionButton().setEnabled(!GUI.getFormatSelectionButton().isEnabled());
+        }
+    }
+}
+
+// This class hold the logic to format the selected database to match program needs
+class formatDatabase implements ActionListener{
+    RocketGUI GUI;
+
+    public formatDatabase (RocketGUI inputGUI)
+    {
+        GUI = inputGUI;
+    }
+
+    public void actionPerformed (ActionEvent e){
+        if(GUI.getFormatColumnsCB().isSelected()) {
+            loginActionListener.MySQL.formatTable();
+
+        }
+    }
+}
+
+//This class holds the logic to sort the table as chosen by the user
+class sortTable implements ActionListener{
+    RocketGUI GUI;
+
+    public sortTable (RocketGUI inputGUI)
+    {
+        GUI = inputGUI;
+    }
+
+    public void actionPerformed (ActionEvent e){
+
     }
 }

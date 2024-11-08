@@ -451,8 +451,8 @@ public class RocketCollections {
         double tonnage = 0;
         RocketDataObject launchData = null;
 
-        System.out.println("Enter the absolute path to your text (.txt) file");
-        //allows the user to reenter path if error
+        /*System.out.println("Enter the absolute path to your text (.txt) file");
+        //allows the user to reenter path if error*/
 
         File dataFile = new File(Path);
         try {
@@ -482,8 +482,12 @@ public class RocketCollections {
                         (l_ID, l_Provider, l_Location, l_Vehicle, l_Date, crew, payload, tonnage);
                 // adds the object to the arraylist
                 RocketDataObject.launchList.add(launchData);
-                // reads the object to the screen
-                // readDataObject(launchData);
+                // adds data to the database
+                if(MySQLHandler.connected) {
+                    loginActionListener.MySQL.MySQLAdd(l_ID, l_Provider, l_Location, l_Vehicle, l_Date, crew, payload, tonnage);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Not connected to database. Row updated locally");
+                }
                 // error input handling
             } catch (NumberFormatException e) {
                 //System.out.println("Invalid integer input on line: " + count + " Row not added\n");
