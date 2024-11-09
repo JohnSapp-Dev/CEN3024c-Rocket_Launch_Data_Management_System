@@ -7,6 +7,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -51,7 +52,7 @@ public class RocketGUI extends JFrame{
     private JTextField UserNameTF;
     private JPasswordField passwordTF;
     private JButton logInButton;
-    private JLabel DBConnectedImageLabel;
+    private JLabel DBConnectedLabel;
     private JTabbedPane MainPanel;
     private JPanel DBLoginPanel;
     private JLabel DBName;
@@ -66,7 +67,7 @@ public class RocketGUI extends JFrame{
     private JPanel optionPanel;
     private JPanel TableTab;
     private JScrollPane DataScrollPane;
-    private boolean connectedToDB = false;
+    private boolean connectedToDB;
 
     //public JList rocketList;
 
@@ -87,6 +88,7 @@ public class RocketGUI extends JFrame{
         connectedStatus(false);
         tableTabEnable(false);
         createSortComboBox();
+        connectedToDB = false;
 
         //button action
         this.AddButton.addActionListener(new AddActionListener(this));
@@ -217,9 +219,20 @@ public class RocketGUI extends JFrame{
     public JTable getDataTable() {return DataTable;}
     public JScrollPane getDataScrollPane() {return DataScrollPane;}
     public JPanel getTablePanel() {return TablePanel;}
+    public JLabel getDBConnectedLabel(){return DBConnectedLabel;}
+    public void setConnectedToDB(boolean connected) {this.connectedToDB = connected;}
 
     public void connectedStatus(boolean connection){
-        String connectedPath = "assets/smallConnected.png";
+
+        if(connection){
+            getDBConnectedLabel().setForeground(Color.green);
+            getDBConnectedLabel().setText("Connected");
+        }else{
+            getDBConnectedLabel().setForeground(Color.red);
+            getDBConnectedLabel().setText("Not Connected");
+        }
+
+        /*String connectedPath = "assets/smallConnected.png";
         String notConnectedPath = "assets/smallNotConnected.png";
         String imagePath;
         if (connection){
@@ -228,8 +241,8 @@ public class RocketGUI extends JFrame{
             imagePath = notConnectedPath;
         }
         ImageIcon icon = new ImageIcon(imagePath);
-        DBConnectedImageLabel.setIcon(icon);
-        connectedToDB = connection;
+        DBConnectedLabel.setIcon(icon);
+        connectedToDB = connection;*/
     }
 
     // blocks the table panel from input till the database is logged into
@@ -533,6 +546,7 @@ class loginActionListener implements  ActionListener{
                 GUI.getLogInButton().setText("Log Out");
                 // enables the table tab upon login
                 GUI.tableTabEnable(true);
+                GUI.setConnectedToDB(true);
                 // adds the database to the table upon login
                 importDatabase.importData(1);
                 GUI.updateTable();
@@ -583,11 +597,12 @@ class formatDatabase implements ActionListener{
 
     public void actionPerformed (ActionEvent e){
         if(GUI.getFormatColumnsCB().isSelected()) {
+
             loginActionListener.MySQL.formatTable();
-            int size = RocketDataObject.launchList.size();
-            if (!RocketDataObject.launchList.isEmpty()) {
+
+            /*if (!RocketDataObject.launchList.isEmpty()) {
                 RocketDataObject.launchList.subList(0, RocketDataObject.launchList.size()).clear();
-            }
+            }*/
             GUI.updateTable();
 
         }

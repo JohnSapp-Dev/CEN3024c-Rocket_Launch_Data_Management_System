@@ -75,8 +75,14 @@ public class MySQLHandler {
                     "This will delete all information in the selected table!","WARNING"
                     ,JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE,null,null,-1);
             if(selection == 0){
+                //removes and formats database
                 deleteStatement.executeUpdate();
                 insertStatement.executeUpdate();
+                //removes items from local arraylist
+                if (!RocketDataObject.launchList.isEmpty()) {
+                    RocketDataObject.launchList.subList(0, RocketDataObject.launchList.size()).clear();
+                }
+
             }
 
         } catch (SQLException e) {
