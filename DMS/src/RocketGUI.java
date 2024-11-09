@@ -67,6 +67,8 @@ public class RocketGUI extends JFrame{
     private JPanel optionPanel;
     private JPanel TableTab;
     private JScrollPane DataScrollPane;
+    private JLabel logoImage;
+    private JPanel imagePanel;
     private boolean connectedToDB;
 
     //public JList rocketList;
@@ -232,9 +234,7 @@ public class RocketGUI extends JFrame{
             getDBConnectedLabel().setText("Not Connected");
         }
 
-        /*String connectedPath = "assets/smallConnected.png";
-        String notConnectedPath = "assets/smallNotConnected.png";
-        String imagePath;
+        /*String imagePath;
         if (connection){
             imagePath = connectedPath;
         }else{
