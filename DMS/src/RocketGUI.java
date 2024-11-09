@@ -557,6 +557,10 @@ class loginActionListener implements  ActionListener{
             //changes the image and button text
             GUI.getFormatDBButton().setToolTipText("Login to format database");
             GUI.getFormatDBButton().setEnabled(false);
+            GUI.getFormatDBButton().setSelected(false);
+            GUI.getFormatColumnsCB().setSelected(false);
+            GUI.getFormatColumnsCB().setEnabled(false);
+            GUI.getFormatSelectionButton().setEnabled(false);
             GUI.connectedStatus(false);
             GUI.tableTabEnable(false);
             GUI.getLogInButton().setText("Login");
