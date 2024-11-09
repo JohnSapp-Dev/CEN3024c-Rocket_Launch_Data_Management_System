@@ -10,6 +10,8 @@ import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -61,8 +63,9 @@ public class RocketGUI extends JFrame{
     private JButton FormatSelectionButton;
     private JTextField TableNameTF;
     private JComboBox sortCombo;
-    private JButton button1;
     private JPanel optionPanel;
+    private JPanel TableTab;
+    private JScrollPane DataScrollPane;
     private boolean connectedToDB = false;
 
     //public JList rocketList;
@@ -82,6 +85,7 @@ public class RocketGUI extends JFrame{
         frame.setTitle("Rocket Launch Data Management System");
         frame.setContentPane(MainPanel);
         connectedStatus(false);
+        tableTabEnable(false);
         createSortComboBox();
 
         //button action
@@ -93,6 +97,7 @@ public class RocketGUI extends JFrame{
         this.logInButton.addActionListener(new loginActionListener(this));
         this.FormatDBButton.addActionListener(new formatDataSelection(this));
         this.FormatSelectionButton.addActionListener(new formatDatabase(this));
+        this.sortCombo.addActionListener(new sortTable(this));
 
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -125,9 +130,11 @@ public class RocketGUI extends JFrame{
                 null,
                 new String[]{"ID", "Provider", "Location", "Vehicle","Date", "Crew", "Payload","Tonnage"}
         ));
+
         //sets default column width
         TableColumnModel columnModel = DataTable.getColumnModel();
         columnModel.getColumn(0).setMinWidth(25);
+       // columnModel.getColumn(0)
         columnModel.getColumn(1).setMinWidth(75);
         columnModel.getColumn(2).setMinWidth(75);
         columnModel.getColumn(3).setMinWidth(75);
@@ -145,8 +152,9 @@ public class RocketGUI extends JFrame{
 
     }
 
+
     private void createSortComboBox(){
-        sortCombo.setModel(new DefaultComboBoxModel(new String[]{"Sort_______","Sort A to Z", "Sort Z to A",
+        sortCombo.setModel(new DefaultComboBoxModel(new String[]{"Sort ID number","Sort Location A-Z", "Sort Location Z-A",
                 "Sort Date oldest first", "Sort Date Newest first"}));
 
     }
@@ -197,6 +205,18 @@ public class RocketGUI extends JFrame{
     public JRadioButton getFormatDBButton() {return FormatDBButton;}
     public JButton getFormatSelectionButton() {return FormatSelectionButton;}
     public JTextField getTableNameTF() {return TableNameTF;}
+    public JButton getFileAddButton() {return fileAddButton;}
+    public JPanel getAddButtonPanel() {return AddButtonPanel;}
+    public JPanel getTextPanel() {return TextPanel;}
+    public JPanel getTableButtonPanel() {return TableButtonPanel;}
+    public JButton getTonnageCal() {return TonnageCal;}
+    public JButton getUpdateDataButton() {return UpdateDataButton;}
+    public JButton getDeleteButton() {return DeleteButton;}
+    public JComboBox getSortCombo() {return sortCombo;}
+    public JPanel getOptionPanel() {return optionPanel;}
+    public JTable getDataTable() {return DataTable;}
+    public JScrollPane getDataScrollPane() {return DataScrollPane;}
+    public JPanel getTablePanel() {return TablePanel;}
 
     public void connectedStatus(boolean connection){
         String connectedPath = "assets/smallConnected.png";
@@ -210,6 +230,36 @@ public class RocketGUI extends JFrame{
         ImageIcon icon = new ImageIcon(imagePath);
         DBConnectedImageLabel.setIcon(icon);
         connectedToDB = connection;
+    }
+
+    // blocks the table panel from input till the database is logged into
+    public void tableTabEnable(boolean setVale) {
+        //addButtonPanel
+        getAddButtonPanel().setEnabled(setVale);
+        getAddButton().setEnabled(setVale);
+        getFileAddButton().setEnabled(setVale);
+        //TextPanel
+        getTextPanel().setEnabled(setVale);
+        getIDTF().setEnabled(setVale);
+        getProviderTF().setEnabled(setVale);
+        getLocationTF().setEnabled(setVale);
+        getVehicleTF().setEnabled(setVale);
+        getDateTF().setEnabled(setVale);
+        getCrewTF().setEnabled(setVale);
+        getPayloadTF().setEnabled(setVale);
+        getTonnageTF().setEnabled(setVale);
+        //TableButtonPanel
+        getTableButtonPanel().setEnabled(setVale);
+        getTonnageCal().setEnabled(setVale);
+        getUpdateDataButton().setEnabled(setVale);
+        getDeleteButton().setEnabled(setVale);
+        //Table
+        getTablePanel().setEnabled(setVale);
+        getDataScrollPane().setEnabled(setVale);
+        getDataTable().setEnabled(setVale);
+        //OptionPanel
+        getOptionPanel().setEnabled(setVale);
+        getSortCombo().setEnabled(setVale);
     }
 
 }
@@ -459,7 +509,6 @@ class loginActionListener implements  ActionListener{
     {
         GUI = inputGUI;
         MySQL = null;
-
     }
 
     public void actionPerformed (ActionEvent e) {
@@ -467,6 +516,7 @@ class loginActionListener implements  ActionListener{
         password = GUI.getPasswordTF().getText();
         DBName = GUI.getDatabaseNameTF().getText();
         tableName = GUI.getTableNameTF().getText();
+        //creates the mysql object that holds all info dealing with the database
         MySQL = new MySQLHandler(userName, password, DBName,tableName);
 
         if(GUI.getLogInButton().getText().equals("Login")) {
@@ -481,6 +531,11 @@ class loginActionListener implements  ActionListener{
                 GUI.getFormatDBButton().setEnabled(true);
                 GUI.getFormatDBButton().setToolTipText("Select to format the database");
                 GUI.getLogInButton().setText("Log Out");
+                // enables the table tab upon login
+                GUI.tableTabEnable(true);
+                // adds the database to the table upon login
+                importDatabase.importData(1);
+                GUI.updateTable();
             }
             // runs if already signed in to the database
         }else if (GUI.getLogInButton().getText().equals("Log Out")){
@@ -489,6 +544,7 @@ class loginActionListener implements  ActionListener{
             GUI.getFormatDBButton().setToolTipText("Login to format database");
             GUI.getFormatDBButton().setEnabled(false);
             GUI.connectedStatus(false);
+            GUI.tableTabEnable(false);
             GUI.getLogInButton().setText("Login");
         }
     }
@@ -528,6 +584,11 @@ class formatDatabase implements ActionListener{
     public void actionPerformed (ActionEvent e){
         if(GUI.getFormatColumnsCB().isSelected()) {
             loginActionListener.MySQL.formatTable();
+            int size = RocketDataObject.launchList.size();
+            if (!RocketDataObject.launchList.isEmpty()) {
+                RocketDataObject.launchList.subList(0, RocketDataObject.launchList.size()).clear();
+            }
+            GUI.updateTable();
 
         }
     }
@@ -543,6 +604,63 @@ class sortTable implements ActionListener{
     }
 
     public void actionPerformed (ActionEvent e){
+        int CBSelection = GUI.getSortCombo().getSelectedIndex();
+        //deletes all values in the arraylist
+        if (!RocketDataObject.launchList.isEmpty()) {
+            RocketDataObject.launchList.subList(0, RocketDataObject.launchList.size()).clear();
+        }
+        //reloads values into arraylist
+        importDatabase.importData(CBSelection+1);
+        GUI.updateTable();
+    }
+
+}
+
+//This class holds the logic to import data from the database into the program
+class importDatabase implements ActionListener{
+    RocketGUI GUI;
+
+    public importDatabase (RocketGUI inputGUI)
+    {
+        GUI = inputGUI;
+    }
+
+    public void actionPerformed (ActionEvent e){
+       importData(1);
+    }
+    public static void importData(int selection){
+        int l_ID = 0;
+        String l_Provider = null;
+        String l_Location = null;
+        String l_Vehicle = null;
+        LocalDate l_Date = null;
+        int crew = 0;
+        String payload = null;
+        double tonnage = 0;
+        RocketDataObject launchData = null;
+
+        ResultSet results = loginActionListener.MySQL.importDatabase(selection);
+
+        try {
+            while(results.next()) {
+                l_ID = results.getInt("Launch_ID");
+                l_Provider = results.getString("Launch_Provider");
+                l_Location = results.getString("Launch_Location");
+                l_Vehicle = results.getString("Launch_Vehicle");
+                l_Date = LocalDate.parse(String.valueOf(results.getDate("Launch_Date")));
+                crew = results.getInt("Number_of_Crew");
+                payload = results.getString("Payload");
+                tonnage = results.getDouble("Tonnage_to_Orbit");
+                launchData = new RocketDataObject
+                        (l_ID, l_Provider, l_Location, l_Vehicle, l_Date, crew, payload, tonnage);
+                // adds the object to the arraylist
+                RocketDataObject.launchList.add(launchData);
+            }
+        }catch(SQLException E){
+            JOptionPane.showMessageDialog(null,"Error with sync");
+        }
+
 
     }
 }
+

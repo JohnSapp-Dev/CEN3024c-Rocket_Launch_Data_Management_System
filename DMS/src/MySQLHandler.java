@@ -61,14 +61,14 @@ public class MySQLHandler {
             // deletes all information from the table
             String clearDB = "DROP TABLE " + tableName;
             String formatColumns = "CREATE TABLE "+tableName+
-                    " (Launch_ID int," +
+                    " (Launch_ID int PRIMARY KEY," +
                     " Launch_Provider VARCHAR(100)," +
                     " Launch_Location VARCHAR(100)," +
                     " Launch_Vehicle VARCHAR(100)," +
                     " Launch_Date DATE," +
                     " Number_of_Crew int," +
                     " Payload VARCHAR(100)," +
-                    " Tonnage_to_Orbit int);";
+                    " Tonnage_to_Orbit DOUBLE);";
             PreparedStatement deleteStatement = this.MySQLSever.prepareStatement(clearDB);
             PreparedStatement insertStatement = this.MySQLSever.prepareStatement(formatColumns);
             int selection = JOptionPane.showOptionDialog(null,
@@ -87,8 +87,9 @@ public class MySQLHandler {
     //updates the database when user adds a row manually.
     public void MySQLAdd(int ID, String provider, String location, String vehicle, LocalDate date, int crew,
                          String payload, double tonnage){
-        String MySQLManualAdd = "INSERT INTO "+tableName+" (Launch_ID, Launch_Provider, Launch_Location, " +
-                "Launch_Vehicle, Launch_Date, Number_of_Crew, Payload, Tonnage_to_Orbit)"+ " VALUES (?,?,?,?,?,?,?,?);";
+        String MySQLManualAdd = "INSERT IGNORE INTO "+tableName+" (Launch_ID, Launch_Provider, Launch_Location, " +
+                "Launch_Vehicle, Launch_Date, Number_of_Crew, Payload, Tonnage_to_Orbit)"+
+                "VALUES (?,?,?,?,?,?,?,?);";
 
         try {
             PreparedStatement ManualAddStatement = this.MySQLSever.prepareStatement(MySQLManualAdd);
@@ -106,6 +107,7 @@ public class MySQLHandler {
             throw new RuntimeException(e);
         }
     }
+
     // updates the database when a user updates a row
     public void MySQLRemove(int ID){
         String MySQLRemove = "DELETE FROM "+tableName+" WHERE Launch_ID=?";
@@ -118,7 +120,36 @@ public class MySQLHandler {
         }
     }
 
-    public void syncDatabase(){
+
+    public ResultSet importDatabase(int selection){
+        String MySQLImport = " ";
+
+        switch(selection){
+            case 1:
+                // returns table sorted by ID number
+                MySQLImport = "SELECT * FROM "+tableName+ " ORDER BY Launch_ID;";
+                break;
+            case 2:
+                MySQLImport = "SELECT * FROM "+tableName+" ORDER BY Launch_Location ASC;";
+                break;
+            case 3:
+                MySQLImport = "SELECT * FROM "+tableName+" ORDER BY Launch_Location DESC;";
+                break;
+            case 4:
+                MySQLImport = "SELECT * FROM "+tableName+" ORDER BY Launch_Date ASC;";
+                break;
+            case 5:
+                MySQLImport = "SELECT * FROM "+tableName+" ORDER BY Launch_Date DESC;";
+                break;
+        }
+
+        PreparedStatement importStatement = null;
+        try {
+            importStatement = this.MySQLSever.prepareStatement(MySQLImport);
+            return importStatement.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
