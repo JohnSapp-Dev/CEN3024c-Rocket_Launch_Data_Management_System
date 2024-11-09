@@ -51,6 +51,7 @@ public class MySQLHandler {
     public void closeConnection() {
         try {
             this.MySQLSever.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -154,6 +155,7 @@ public class MySQLHandler {
             importStatement = this.MySQLSever.prepareStatement(MySQLImport);
             return importStatement.executeQuery();
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Database not formated to match program. Please format the database.");
             throw new RuntimeException(e);
         }
 
