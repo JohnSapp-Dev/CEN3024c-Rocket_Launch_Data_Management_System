@@ -548,7 +548,9 @@ class loginActionListener implements  ActionListener{
                 GUI.tableTabEnable(true);
                 GUI.setConnectedToDB(true);
                 // adds the database to the table upon login
-                importDatabase.importData(1);
+                if(RocketDataObject.launchList.isEmpty()) {
+                    importDatabase.importData(1);
+                }
                 GUI.updateTable();
             }
             // runs if already signed in to the database
