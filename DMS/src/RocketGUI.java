@@ -1,7 +1,3 @@
-/*
- * The GUI.java class hold the logic for the Graphical User Interface (GUI).
- */
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -18,6 +14,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * The GUI.java class hold the logic for the Graphical User Interface (GUI).
+ */
 public class RocketGUI extends JFrame{
     private JTextField IDTF;
     private JTextField ProviderTF;
@@ -78,7 +77,8 @@ public class RocketGUI extends JFrame{
         init();
 
     }
-
+    /**
+     * init: This initiates the GUI and action listeners */
     public void init() {
 
         JTabbedPane MainPanel = this.getMainPanel();
@@ -108,6 +108,8 @@ public class RocketGUI extends JFrame{
         frame.setVisible(true);
     }
 
+    /**
+     * This method updates the table displaying the data stored in the ArrayList*/
    public void updateTable(){
         ArrayList<RocketDataObject> list = RocketDataObject.launchList;
         DefaultTableModel model = (DefaultTableModel) DataTable.getModel();
@@ -127,7 +129,8 @@ public class RocketGUI extends JFrame{
         }
     }
 
-    /* Creates a table*/
+    /**
+     *  Creates the table initiating the column names and default column width and centering*/
     private void createTable() {
         //table format
         DataTable.setModel(new DefaultTableModel(
@@ -156,7 +159,8 @@ public class RocketGUI extends JFrame{
 
     }
 
-
+    /**
+     * Creates the Sort Combo box initiating the selection options*/
     private void createSortComboBox(){
         sortCombo.setModel(new DefaultComboBoxModel(new String[]{"Sort ID number","Sort Location A-Z", "Sort Location Z-A",
                 "Sort Date oldest first", "Sort Date Newest first"}));
@@ -224,6 +228,8 @@ public class RocketGUI extends JFrame{
     public JLabel getDBConnectedLabel(){return DBConnectedLabel;}
     public void setConnectedToDB(boolean connected) {this.connectedToDB = connected;}
 
+    /**
+     * Changes the value of the DBConnectedLabel to display if the database is connected*/
     public void connectedStatus(boolean connection){
 
         if(connection){
@@ -233,19 +239,10 @@ public class RocketGUI extends JFrame{
             getDBConnectedLabel().setForeground(Color.red);
             getDBConnectedLabel().setText("Not Connected");
         }
-
-        /*String imagePath;
-        if (connection){
-            imagePath = connectedPath;
-        }else{
-            imagePath = notConnectedPath;
-        }
-        ImageIcon icon = new ImageIcon(imagePath);
-        DBConnectedLabel.setIcon(icon);
-        connectedToDB = connection;*/
     }
 
-    // blocks the table panel from input till the database is logged into
+    /**
+     * Enable/disable the table panel from input till the database is logged into*/
     public void tableTabEnable(boolean setVale) {
         //addButtonPanel
         getAddButtonPanel().setEnabled(setVale);
@@ -277,7 +274,9 @@ public class RocketGUI extends JFrame{
 
 }
 
-// this class holds the logic to add rows to the database
+/**
+ * this class holds the logic to add rows to the database when the add file button is pressed
+ * Containing error catching and formating*/
 class AddActionListener implements ActionListener {
 
     RocketGUI GUI;
@@ -379,7 +378,8 @@ class AddActionListener implements ActionListener {
     }
 }
 
-// This class holds the logic to add a file to the database
+/**
+ * This class holds the logic to add a file to the database when the add file button is pressed*/
 class AddFileActionListener implements ActionListener{
     RocketGUI GUI;
 
@@ -398,7 +398,9 @@ class AddFileActionListener implements ActionListener{
         //updates the table after the file is added
         GUI.updateTable();
     }
-
+    /**
+     * Displays a pop-up selection GUI that allows the user to navigate to a selected file.
+     * @return the absolute path to the selected file*/
     public String OpenFileExplorer(){
 
             JFileChooser FileChooser = new JFileChooser();
@@ -418,7 +420,10 @@ class AddFileActionListener implements ActionListener{
     }
 }
 
-// This class hold the logic to calculate the total tonnage stored in the database
+/**
+ * This class hold the logic to calculate the total tonnage stored in the database
+ * when the calculate tonnage button is pressed.
+ */
 class calculateTonnagaActionListener implements ActionListener{
 
     public calculateTonnagaActionListener (RocketGUI inputGUI)
@@ -431,7 +436,9 @@ class calculateTonnagaActionListener implements ActionListener{
     }
 }
 
-// This class holds the logic to delete a selected row in the database
+/**
+ * This class holds the logic to delete a selected row in the database when the delete button is pressed.
+*/
 class deleteRowActionListener implements ActionListener{
     RocketGUI GUI;
 
@@ -470,7 +477,9 @@ class deleteRowActionListener implements ActionListener{
     }
 }
 
-// This class holds the logic to update a row in the database
+/**
+This class holds the logic to update a row in the database when the update button is pressed
+*/
 class updateRowActionListener implements  ActionListener{
 
     RocketGUI GUI;
@@ -509,7 +518,10 @@ class updateRowActionListener implements  ActionListener{
     }
 }
 
-// This class holds the logic to log into/out of the users database
+/**
+ * This class holds the logic to log into/out of the users database when the login/log out button is pressed.
+ * The user must provide the login credentials.
+*/
 class loginActionListener implements  ActionListener{
     RocketGUI GUI;
     static String userName = null;
@@ -574,7 +586,9 @@ class loginActionListener implements  ActionListener{
     }
 }
 
-// This class holds the logic to let the user select format options
+/**
+ * This class holds the logic to let the user select format options
+*/
 class formatDataSelection implements  ActionListener{
     RocketGUI GUI;
 
@@ -592,7 +606,10 @@ class formatDataSelection implements  ActionListener{
     }
 }
 
-// This class hold the logic to format the selected database to match program needs
+/**
+ * This class hold the logic to format the selected database to match program needs
+ * when the format database button is pressed.
+*/
 class formatDatabase implements ActionListener{
     RocketGUI GUI;
 
@@ -605,17 +622,15 @@ class formatDatabase implements ActionListener{
         if(GUI.getFormatColumnsCB().isSelected()) {
 
             loginActionListener.MySQL.formatTable();
-
-            /*if (!RocketDataObject.launchList.isEmpty()) {
-                RocketDataObject.launchList.subList(0, RocketDataObject.launchList.size()).clear();
-            }*/
             GUI.updateTable();
 
         }
     }
 }
 
-//This class holds the logic to sort the table as chosen by the user
+/**
+ * This class holds the logic to sort the table as chosen by the user when the Sort option is changed
+*/
 class sortTable implements ActionListener{
     RocketGUI GUI;
 
@@ -634,10 +649,12 @@ class sortTable implements ActionListener{
         importDatabase.importData(CBSelection+1);
         GUI.updateTable();
     }
-
 }
 
-//This class holds the logic to import data from the database into the program
+/**
+ * This class holds the logic to import data from the database into the program when the database
+ * is logged into, updated, or sorted. The selection option selects the proper MySQL query.
+*/
 class importDatabase implements ActionListener{
     RocketGUI GUI;
 

@@ -1,12 +1,12 @@
-/* The MySQLHandler.java class holds the logic that interacts with the MySQL database.
-*  This class holds the user's info to login in to the database along with the methods to make
-*  database queries.
-*/
-
 import javax.swing.*;
 import java.time.LocalDate;
 import java.sql.*;
 
+/**
+ *  The MySQLHandler.java class holds the logic that interacts with the MySQL database.
+ *  This class holds the user's info to login in to the database along with the methods to make
+ *  database queries.
+ */
 public class MySQLHandler {
     //fields
     private String UserName;
@@ -48,6 +48,9 @@ public class MySQLHandler {
     public void setDatabaseName(String databaseName) {this.databaseName = databaseName;}
     public void setMySQLUrl(String MySQLUrl) {this.MySQLUrl = MySQLUrl;}
 
+    /**
+     * Closes the connection to the database when called
+     * */
     public void closeConnection() {
         try {
             this.MySQLSever.close();
@@ -57,6 +60,10 @@ public class MySQLHandler {
         }
     }
 
+    /**
+     * Deletes the table in the selected database.
+     * Creates a new table with the proper column names and data types.
+     * Also removes any data in the ArrayList*/
     public void formatTable (){
         try{
             // deletes all information from the table
@@ -91,7 +98,9 @@ public class MySQLHandler {
         }
     }
 
-    //updates the database when user adds a row manually.
+    /**
+     * Updates the database when user adds a row of data manually or via a file.
+    */
     public void MySQLAdd(int ID, String provider, String location, String vehicle, LocalDate date, int crew,
                          String payload, double tonnage){
         String MySQLManualAdd = "INSERT IGNORE INTO "+tableName+" (Launch_ID, Launch_Provider, Launch_Location, " +
@@ -115,7 +124,9 @@ public class MySQLHandler {
         }
     }
 
-    // updates the database when a user updates a row
+    /**
+    Updates the database when a user deletes a row from the table
+    */
     public void MySQLRemove(int ID){
         String MySQLRemove = "DELETE FROM "+tableName+" WHERE Launch_ID=?";
         try{
@@ -127,7 +138,9 @@ public class MySQLHandler {
         }
     }
 
-
+    /**
+     * Uses the correct MySQL query to gather data from the database.
+     * */
     public ResultSet importDatabase(int selection){
         String MySQLImport = " ";
 

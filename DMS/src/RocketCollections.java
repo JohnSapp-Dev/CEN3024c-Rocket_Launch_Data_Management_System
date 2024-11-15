@@ -1,10 +1,3 @@
-/*
-* The RocketCollections.java class holds all the logic for the program. This class allows the user
-* input data into the RocketDataObject with error handling. This ensures the data being inserted
-* will not crash the program.
-*/
-
-
 import javax.swing.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -13,9 +6,16 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.io.*;
 
+/**
+ * The RocketCollections.java class holds all the logic for the program. This class allows the user
+ * input data into the RocketDataObject with error handling. This ensures the data being inserted
+ * will not crash the program.
+ */
 public class RocketCollections {
     static Scanner dataInput = new Scanner(System.in);
-
+/**
+ * Return an int entered by the user. The input has error correction and range correction
+ * @deprecated used for phase 1*/
     /*public static int launchIDInput(){
         //used for command line
         // gets and returns user input
@@ -51,24 +51,38 @@ public class RocketCollections {
         return launchID;
     }*/
 
+    /**
+     * Return a string entered by the user
+     *  @deprecated used for phase 1*/
     /*public static String launchProviderInput() {
         // gets and returns user input
         System.out.println("Enter Launch Provider");
         return dataInput.nextLine();
     }*/
 
+    /**
+     * Return a string entered by the user
+     *  @deprecated used for phase 1 */
    /* public static String launchLocationInput() {
         // gets and returns user input
         System.out.println("Enter Launch Location");
         return dataInput.nextLine();
     }*/
 
+    /**
+     * Return a string entered by the user
+     *  @deprecated used for phase 1*/
    /* public static String launchVehicleInput() {
         // gets and returns user input
         System.out.println("Enter Launch Vehicle");
         return dataInput.nextLine();
     }*/
 
+    /**
+     * Return a LocalDate entered by the user. This will prompt the user to enter the date
+     * based on a predefined format i.e "YYYY-MM-DD"
+     *  @deprecated used for phase 1
+     * */
    /* public static LocalDate launchDateInput() {
         // gets and returns user input
         boolean correctEntry = true;
@@ -92,6 +106,9 @@ public class RocketCollections {
         return inputDateType;
     }*/
 
+    /**
+     * Return an int entered by the user. The input has error correction and range correction
+     * @deprecated used for phase 1*/
    /* public static int numberCrewInput() {
         // gets and returns user input
         boolean correctEntry = true;
@@ -117,6 +134,9 @@ public class RocketCollections {
         return numberCrew;
     }*/
 
+    /**
+     * Return a double entered by the user. The input has error correction and range correction
+     * @deprecated used for phase 1*/
    /* public static double tonnageOrbitInput() {
         // gets and returns user input
         boolean correctEntry = true;
@@ -142,12 +162,18 @@ public class RocketCollections {
         return numberTonnage;
     }*/
 
+    /**
+     * Return a string entered by the user
+     *  @deprecated used for phase 1*/
    /* public static String payloadInput() {
         // gets and returns user input
         System.out.println("Enter Payload");
         return dataInput.nextLine();
     }*/
 
+    /**
+ * Prints the RocketDataObject to the console
+ * @deprecated used for phase 1*/
     /*public static void readDataObject(RocketDataObject rL) {
         //prints out object filed to screen
         System.out.println("Launch ID:        " + rL.getLaunch_ID());
@@ -160,6 +186,9 @@ public class RocketCollections {
         System.out.println("Tonnage to Orbit: " + rL.getTonnage_to_Orbit() + "\n");
     }*/
 
+    /**
+     * Calls the correct method to upload data to the ArrayList based on user input
+     * @deprecated used for phase 1*/
    /* public static void createData() {
         int optionNumber = 0;
         boolean correctEntry = true;
@@ -195,6 +224,9 @@ public class RocketCollections {
         }
     }*/
 
+    /**
+     * Creates a RocketDataObject with the values entered by the user
+     * @deprecated used for phase 1*/
    /* public static void manualDataEntry() {
         // creates an object using the "Input" methods
         RocketDataObject launchData = new RocketDataObject
@@ -206,6 +238,9 @@ public class RocketCollections {
         readDataObject(launchData);
     }*/
 
+    /**
+     * Prints the ArrayList to the console by looping and calling the readDataObject method for each object
+     * @deprecated */
     /*public static void readData() {
         // checks if there is data in the arraylist
         if (RocketDataObject.launchList.isEmpty()) {
@@ -218,6 +253,19 @@ public class RocketCollections {
         }
     }*/
 
+    /**
+     * Allows the user to update or delete objects from the ArrayList.
+     * <p>
+     *     Update:
+     *     Prints a menu for the user to select from.
+     *     User selects RockDataObject by entering its Launch_ID.
+     *     A switch case selects the proper "set" method to change the desired value.
+     * </p>
+     * <p>
+     *     Delete:
+     *     Deletes the object corresponding to the Launch_ID entered bt the user.
+     * </p>
+     * @deprecated used for phase 1*/
    /* public static void updateDeleteData(int optionNumber) {
 
         int number_ID = 0;
@@ -340,8 +388,8 @@ public class RocketCollections {
                     }
                 }
 
-                *//*If the loop reaches the end of the arraylist without finding the launch ID
-                 * an error message is displayed*//*
+                If the loop reaches the end of the arraylist without finding the launch ID
+                 * an error message is displayed
                 else if (i == RocketDataObject.launchList.size() - 1) {
                     System.out.println("This Launch ID does not exist\n");
                 }
@@ -349,6 +397,9 @@ public class RocketCollections {
         }
     }*/
 
+    /**
+     * Loops thought the entire ArrayList, displays the total sum of values in tonnage_to_orbit
+     * @deprecated used for phase 1*/
    /* public static void tonnageToOrbit(){
         // calculates the total tonnage to orbit based on the data in the arraylist
         double totalTonnage = 0;
@@ -363,6 +414,10 @@ public class RocketCollections {
         }
     }*/
 
+    /**
+     * Opens a .txt file via an absolute path entered by the user. The file is parsed and uploaded to
+     *  the ArrayList. This method will delete duplicate enters based on the Launch_ID
+     *  @deprecated used for phase 1*/
    /* public static void fileDataEntry(){
         boolean correctFile = true;
         Scanner readData = null;
@@ -435,6 +490,9 @@ public class RocketCollections {
         }
     }*/
 
+    /**
+     * Opens a (.txt) file via an absolute path passed when called. The file is parsed and uploaded to the
+     * ArrayList. Duplicate entries are deleted from the ArrayList*/
     public static void fileDataEntryGUI(String Path) {
         boolean correctFile = true;
         Scanner readData = null;
@@ -516,6 +574,10 @@ public class RocketCollections {
 
     }
 
+    /**
+     * Loops thought the entire ArrayList, displays the total sum of values in tonnage_to_orbit
+     * via a pop-up message.
+     * */
     public static void tonnageToOrbitGUI() {
         // calculates the total tonnage to orbit based on the data in the arraylist
         double totalTonnage = 0;
@@ -532,18 +594,21 @@ public class RocketCollections {
         }
     }
 
+    /**
+     * Deletes the selected row via the Launch_ID selected in the GUI*/
     public static void deleteRowGUI(int rowValue, int rowNumber) {
 
         if (rowValue == RocketDataObject.launchList.get(rowNumber).getLaunch_ID()){
             //deletes the entry corresponding to the launch ID
             System.out.println("The data below has been deleted");
             RocketDataObject.launchList.remove(RocketDataObject.launchList.get(rowNumber));
-
         }
     }
 
+    /**
+     * Sets the text fields to the selected row from the GUI table and deletes the row from the ArrayList.
+     * The AddActionListener class will then add the updated values to the ArrayList and the database*/
     public static void UpdateRowGUI (int rowValue, int rowNumber, RocketGUI GUI){
-
 
         if (rowValue == RocketDataObject.launchList.get(rowNumber).getLaunch_ID()){
             //deletes the entry corresponding to the launch ID

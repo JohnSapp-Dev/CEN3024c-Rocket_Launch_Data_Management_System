@@ -1,13 +1,15 @@
-/*
-* The Main.java class is responsible for starting the program. This class starts the GUI thread and calls the
-* input and output logic to begin.
-*/
 
-import java.util.Scanner;
 
+//import java.util.Scanner;
+/**
+ * The Main.java class is responsible for starting the program. This class starts the GUI thread and calls the
+ * input and output logic to begin.
+ */
 public class Main {
 
-
+/**
+ * Starts the program and creates a thread where the GUI runs
+ * */
     public static void main(String[] args) {
         GUIThread GUI = new GUIThread();
         GUI.start();
@@ -20,6 +22,10 @@ public class Main {
         // default constructor
     }
 
+    /**
+     * The menu method displays a menu to the console. This method calls the user selected option.
+     * @deprecated used only for phase 1 of development
+     * */
    /* public void menu(){
 
         boolean exit = true;
@@ -79,6 +85,9 @@ public class Main {
         }
     }*/
 
+/**
+ * The WelcomeMessage method prints a message to the console when the program starts
+ * @deprecated used only for phase 1 of development*/
     /*public void WelcomeMessage(){
         System.out.println("Welcome to the Rocket Launch Data Management System\n");
     }*/
