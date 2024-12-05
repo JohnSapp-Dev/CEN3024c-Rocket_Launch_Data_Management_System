@@ -10,6 +10,8 @@ Throughout the class, we have gone through the following steps of the SDLC:
 - Coding phase 4 -- Adding database support <- current state
 
 ---
+![] (Resources/github gif/GifOverview.gif)
+---
 ## Program description
 The Rocket Launch Data Management System (RLDMS) allows users to enter data describing a rocket launch 
 via a text (.txt) file or manual entry. The user can then read the saved data, update an entry, delete an entry, or calculate the 
